@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <title>404</title>
+  </head>
+  <body class="temp_404">
+    <div class="container_404">
+      <h2>Упс! Страница не найдена.</h2>
+      <h1>404</h1>
+      <p>Мы не можем найти данную страницу.</p>
+    </div>
+    <a class="btn_404" href="{% url 'home_url' %}">Вернуться</a>
+  </body>
+</html>

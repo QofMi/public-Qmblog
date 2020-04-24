@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript" src="js/parallax.js"></script>
+    <script>new WOW().init();</script>
+    <link href="https://fonts.googleapis.com/css?family=Alatsi|Baloo|Bebas+Neue|Chivo|Indie+Flower|Lilita+One|PT+Sans|Permanent+Marker|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>
+      {% block title %}
+
+      {% endblock %}
+
+    </title>
+  </head>
+  <!--
+  <div class="preloader">
+    <h1 class="logo_preloader">QMBLOG</h1>
+  </div>
+  -->
+  <body>
+    <header>
+      <div  class="main">
+        <div class="header">
+          <div class="logo">
+            <h1 class="qblog">QMBLOG</h1>
+          </div>
+          <div class="menu">
+            <nav class="menu-nav">
+              <a class="menu-a" href="home.html">Домой</a>
+              <a class="menu-a" href="new_index.html">Блог</a>
+              <a class="menu-a" href="#">О нас</a>
+              <a class="menu-a" href="#">Вход</a>
+              <a class="menu-a" href="user.html">Профиль</a>
+            </nav>
+            <div href="#" class="menu-btn">
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rectangle">
+        <div class="main-block wow fadeInUp">
+          <div class="main-txt">
+            <h1 class="wow fadeInUp" data-wow-delay = "1s">Привет QofMi</h1>
+            <h3 class="wow fadeInUp" data-wow-delay = "1.50s"></h3>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="blog_content">
+      <form class="user_edit_form" action="index.html" method="post">
+        <div class="user_edit_info">
+          <div class="txtb">
+            <input class="login_input" type="text" name="username" value="" placeholder="Имя пользователя">
+            <span data-placeholder="Имя пользователя"></span>
+          </div>
+
+          <div class="txtb">
+            <input class="login_input" type="email" name="email" value="" placeholder="Адрес эл. почты">
+          </div>
+
+          <div class="txtb">
+            <input class="login_input" type="text" name="first_name" value="" placeholder="Имя">
+          </div>
+
+          <div class="txtb">
+            <input class="login_input" type="text" name="last_name" value="" placeholder="Фамилия">
+          </div>
+        </div>
+        <div class="">
+          <button type="button" name="button">asdasd</button>
+          <button type="button" name="button">asdasd</button>
+        </div>
+      </form>
+    </div>
+    <footer></footer>
+  </body>
+</html>

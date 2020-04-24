@@ -1,0 +1,28 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+{{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block h1 %}
+Блог
+{% endblock %}
+
+{% block h3 %}
+Подробнее о статье
+{% endblock %}
+
+{% block content %}
+      <div class="post_detail wow zoomIn" data-wow-delay = "0.25s">
+        <h1 class="post_detail_h1">{{ post.title}}</h1>
+        <p class="post_detail_p">От {% firstof post.user.get_full_name or post.user.get_username %}  {{ post.date_pub }}</p>
+        <div class="post_img">
+          {% if post.img %}
+          <img src="{{ post.img.url }}" alt=""  class="img_detail">
+          {% endif %}
+        </div>
+        <div class="post_detail_p">
+          {% autoescape off %}{{ post.body }}{% endautoescape %}
+        </div>
+      </div>
+{% endblock %}

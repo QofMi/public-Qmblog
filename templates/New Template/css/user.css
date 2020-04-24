@@ -1,0 +1,369 @@
+/* БАЗОВЫЙ ШАБЛОН */
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+html{
+  position: relative;
+  overflow-x: hidden;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  display: block;
+}
+
+header {
+  font-family: 'Bebas Neue', cursive;
+  background-color: #f1f1f1;
+  height: 600px;
+  width: 100%;
+}
+
+
+footer {
+  font-family: 'Bebas Neue', cursive;
+  background-color: white;
+  width: 100%;
+  height: 200px;
+}
+
+body {
+  font-family: 'PT Sans Narrow', sans-serif;
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* ------------------------------------------------------------------------ */
+/* ГАМБУРГЕР */
+.menu-btn {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: #333333;
+  border-radius: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-btn span, .menu-btn span::before,
+.menu-btn span::after {
+  position: absolute;
+  top: 50%; margin-top: -1px;
+  left: 50%; margin-left: -10px;
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.menu-btn span::before,
+.menu-btn span::after {
+  content: '';
+  display: block;
+  transition: 0.2s;
+}
+
+.menu-btn span::before {
+  transform: translateY(-5px);
+}
+
+.menu-btn span::after {
+  transform: translateY(5px);
+}
+
+.menu-btn_active span::before {
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.menu-btn_active span{
+  height: 0;
+}
+
+.menu-btn_active span::after {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+/* ------------------------------------------------------------------------ */
+
+/* НАВИГАЦИЯ */
+.menu-nav {
+  position: fixed;
+  right: 0;top: 0;left: 0;bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #333333;
+  width: 100%;
+  height: 100vh;
+  clip-path: circle(0 at 93% 5%);
+  -webkit-clip-path: circle(0 at 93% 5%);
+  overflow: hidden;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.menu-a{
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  height: 15%;
+  color: #ffffff;
+  font-family: 'PT Sans', sans-serif;
+  opacity: 0;
+  transition: 0.7s;
+}
+
+.menu-a_active {
+  opacity: 1;
+  transition: 0.7s;
+}
+
+.menu-nav_active {
+  clip-path: circle(150% at 93% 5%);
+  -webkit-clip-path: circle(150% at 93% 5%);
+  transition: 0.5s;
+}
+
+
+/* ------------------------------------------------------------------------ */
+
+/* ШАПКА */
+.qblog {
+  font-family: 'Permanent Marker', cursive;
+  color: #333333;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 99;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  position: relative;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ------------------------------------------------------------------------ */
+
+/* ШАПКА ТЕКСТ */
+
+.rectangle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.main-block {
+  display: flex;
+  justify-content: center;
+  margin-top: 14%;
+  width: 50%;
+  height: 40%;
+  background-color: #ffffff;
+  border: 8px solid #f7f6f6;
+}
+
+.main-txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'PT Sans', sans-serif;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.main-txt h1 {
+  color: #333333;
+}
+
+.main-txt h3 {
+  color: #515050;
+  font-size: 15px;
+}
+
+
+
+/* ------------------------------------------------------------------------ */
+/* Примерный размер поста
+.item {
+  height: 400px;
+  width: 40%;
+  background: red;
+  margin: 1%;
+  margin-top: 5%;
+}
+*/
+
+/* ПОСТЫ */
+.blog_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+}
+
+/* ------------------------------------------------------------------------ */
+
+/* Профиль пользователя */
+.user_container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 5%;
+}
+
+.user_profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+.user_info h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.user_info h3{
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.user_info h4{
+  font-size: 1rem;
+}
+
+.settings_button {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.settings_button_edit {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+.settings_button_edit:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.settings_button_logout {
+  background: linear-gradient(120deg, #fc3030, #ac0000, #fc3030);
+  background-size: 200%;
+}
+
+.settings_button_edit i {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.settings_button_edit h5 {
+  color: #fff;
+}
+
+
+.fa-passwd-reset > .fa-lock {
+  font-size: 0.85rem;
+}
+
+.user_posts {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.user_post_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+/* ------------------------------------------------------------------------ */
+.user_post_card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+  width: 80%;
+  padding: 10px;
+  height: auto;
+  background-color: #dbdbdb;
+}
+
+.user_post_card img {
+  width: 200px;
+}
+
+
+/* ------------------------------------------------------------------------ */
+
+/* Редактор профиля */
+.user_edit_form {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 5%;
+  background-color: #f3f3f3;
+  padding: 20px;
+}
+
+.user_edit_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2%;
+}

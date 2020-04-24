@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon">
+  	<link rel="apple-touch-icon" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+  	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/favicon/apple-touch-icon-72x72.png' %}">
+  	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/favicon/apple-touch-icon-114x114.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+    <script>new WOW().init();</script>
+    <title>О проекте</title>
+  </head>
+  {% if request.user.is_authenticated and request.user.is_staff %}
+  {% include 'blog/includes/admin_panel.html' %}
+  {% endif %}
+  <body>
+    <header class="header_about">
+      <div  class="main">
+        <div class="header">
+          <div class="logo">
+            <h1 class="about_h1">О проекте</h1>
+          </div>
+          <div class="menu">
+            <nav class="menu-nav">
+              <a class="menu-a" href="{% url 'home_url' %}">Домой</a>
+              <a class="menu-a" href="{% url 'posts_list_url' %}">Блог</a>
+              <a class="menu-a" href="{% url 'about_url' %}">О проекте</a>
+              {% if request.user.is_authenticated %}
+              <a class="menu-a" href="{% url 'user_profile_url' %}">{% firstof user.get_username %}</a>
+              {% else %}
+              <a class="menu-a" href="{% url 'sign_in_url' %}">Вход</a>
+              {% endif %}
+            </nav>
+            <div href="#" class="menu-btn">
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="about_container">
+      <div class="about">
+        <h1 class="qmblog_about wow fadeInUp" data-wow-delay = "0.5s">QMBLOG</h1>
+        <h2 class="about_h2 wow fadeInUp" data-wow-delay = "0.7s">Данный веб-сайт разработал - Иван Шиипачев</h2>
+        <h2 class="about_h2 wow fadeInUp" data-wow-delay = "1s">Блог ни о чем, для ничего, но он есть.</h2>
+        <div class="contacts">
+          <a href="https://vk.com/qofmi">
+            <div class="vk wow fadeInLeft" data-wow-delay = "1.25s">
+              <i class="fa fa-vk" aria-hidden="true"></i>
+            </div>
+          </a>
+          <a href="https://twitter.com/QueenOfMirana">
+            <div class="twitter wow fadeInRight" data-wow-delay = "1.25s">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

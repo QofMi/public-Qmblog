@@ -1,0 +1,174 @@
+@media screen and (max-width: 1200px){
+  /* BLOG */
+
+  /* ACCOUNTS */
+  .login_form {
+    width: 40%;
+    height: 30%;
+    transition: 0.5s;
+  }
+  .main-txt h3 {
+    text-align: center;
+  }
+  .contacts {
+    width: 40%;
+  }
+
+}
+
+@media screen and (max-width: 800px){
+
+  /* BLOG */
+  .post {
+    width: 90%;
+  }
+  .main-block {
+    width: 80%;
+    transition: 0.5s;
+  }
+
+
+  header {
+    font-family: 'Bebas Neue', cursive;
+    background-color: #f1f1f1;
+    height: 600px;
+  }
+  .post_detail {
+    width: 90%;
+  }
+
+  .menu-a{
+    margin-top: 10%;
+  }
+
+  .main-txt{
+    display: flex;
+  }
+  /* ACCOUNTS */
+  .login_form {
+    width: 60%;
+    height: 30%;
+    transition: 0.5s;
+  }
+  .post_create_form {
+    width: 100%;
+    transition: 0.5s;
+  }
+  .settings_button {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .user_post_card {
+    flex-direction: column;
+  }
+
+}
+
+@media screen and (max-width: 600px){
+  .post {
+    width: 90%;
+  }
+
+  .rectangle {
+    display: none;
+  }
+
+  .main-txt h3 {
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.5s;
+  }
+
+  header {
+    font-family: 'Bebas Neue', cursive;
+    background-color: #f1f1f1;
+    height: 90px;
+  }
+
+  .post_detail {
+    width: 90%;
+  }
+  .contacts {
+    width: 60%;
+  }
+
+/* Меню */
+  .menu-a{
+    margin-top: 10%;
+  }
+
+  .menu-nav_active{
+    clip-path: circle(170% at 90% -15%);
+    -webkit-clip-path: circle(170% at 90% -15%);
+  }
+
+
+  /* ACCOUNTS */
+  .login_form {
+    width: 60%;
+    height: 30%;
+    transition: 0.5s;
+  }
+  .g-recaptcha {
+    transform:scale(0.8);
+    transform-origin:0 0;
+    transition: 0.5s;
+    justify-content: flex-start;
+  }
+  .user_edit_form {
+    width: 80%;
+  }
+  .user_profile {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .user_post_card {
+    flex-direction: column;
+  }
+
+/* ------------------------------------------------------------------------ */
+}
+
+@media screen and (max-width: 450px){
+  .contacts {
+    width: 80%;
+  }
+
+  /* ACCOUNTS */
+  .login_form {
+    width: 100%;
+    height: 30%;
+    transition: 0.5s;
+  }
+  .g-recaptcha {
+    transform:scale(0.8);
+    transform-origin:0 0;
+    transition: 0.5s;
+    justify-content: flex-start;
+  }
+  .user_edit_form {
+    width: 100%;
+  }
+  .settings_button {
+    flex-direction: column;
+  }
+  .settings_button_edit {
+    margin-top: 10px;
+  }
+  .user_container {
+    width: 95%;
+  }
+  .user_post_card {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .g-recaptcha {
+    transform:scale(0.6);
+    transform-origin:0 0;
+    transition: 0.5s;
+    margin-bottom: 1%;
+  }
+}

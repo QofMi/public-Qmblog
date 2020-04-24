@@ -1,0 +1,38 @@
+{% extends 'accounts/signin_template.html' %}
+{% block title %}
+  Регистрация
+{% endblock %}
+
+{% block content %}
+<form class="login_form" action="{% url 'sign_up_url' %}" method="post">
+  {% csrf_token %}
+  <h1>Регистрация</h1>
+
+  {% include 'accounts/includes/alert.html' %}
+
+  <div class="txtb">
+  <!-- -->
+    <input type="text" name="username" value="" maxlength="50">
+    <span data-placeholder="Имя пользователя"></span>
+  </div>
+
+  <div class="txtb">
+    <input type="email" name="email" value="" maxlength="150">
+    <span data-placeholder="Адрес эл. почты"></span>
+  </div>
+
+  <div class="txtb">
+    <input type="password" name="password1" value="" maxlength="50">
+    <span data-placeholder="Пароль"></span>
+  </div>
+
+  <div class="txtb">
+    <input type="password" name="password2" value="" maxlength="50">
+    <span data-placeholder="Подтвердите пароль"></span>
+  </div>
+  {{ form.checkbox }} Я принимаю условия <a href="{% url 'policy_url' %}">Политики конфиденциальности</a>.
+  <div class="g-recaptcha" data-sitekey="6Lf1St8UAAAAAPZ3UKxzVv1osrR7TfDRmKjbJgto"></div>
+  <input type="submit" class="logbtn" value="Создать аккаунт">
+</form>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="NewMain.css">
+    <link rel="stylesheet" href="animate.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="wow.min.js"></script>
+    <script>new WOW().init();</script>
+    <link href="https://fonts.googleapis.com/css?family=Alatsi|Baloo|Bebas+Neue|Chivo|Indie+Flower|Lilita+One|PT+Sans|Permanent+Marker|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>
+      {% block title %}
+
+      {% endblock %}
+
+
+    </title>
+  </head>
+  <div class="admin_panel">
+    <div class="admin_panel_a">
+      <a class="panel_a" href="#">Создать</a>
+      <a class="panel_a" href="#">Редактировать</a>
+      <a class="panel_a" href="/admin">admin</a>
+    </div>
+  </div>
+  <body>
+    <header>
+      <div  class="main">
+        <div class="header">
+          <div class="logo">
+            <h1 class="qblog">QBLOG</h1>
+          </div>
+          <div class="menu">
+            <div class="menu-block">
+              <nav class="menu-nav">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="/admin">Login</a>
+              </nav>
+            </div>
+            <a href="#" class="menu-btn">
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="rectangle">
+        <div class="main-block wow fadeInUp">
+          <div class="main-txt">
+            <h1 class="wow fadeInUp" data-wow-delay = "1s">POSTS CREATOR</h1>
+            <h3 class="wow fadeInUp" data-wow-delay = "1.50s">CREATE YOUR NEW POSTS</h3>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="blog_content">
+      <div class="post_create_form">
+        <form class="" action="{% url 'posts_create_url' %}" method="post">
+          <h1 class="post_create_form_title">Редактор</h1>
+          <div class="post_create_form_group">
+            <input class="form-control" placeholder="Заголовок статьи">
+          </div>
+
+          <div class="post_create_form_group">
+            <input class="post_create_form_input_body" placeholder="Текст">
+          </div>
+
+          <button class="post_create_form_button" type="submit" name="button">Create</button>
+        </form>
+      </div>
+
+    </div>
+
+
+
+  </body>
+</html>

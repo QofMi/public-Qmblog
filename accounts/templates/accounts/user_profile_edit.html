@@ -1,0 +1,43 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+{% firstof user.username %}
+{% endblock %}
+
+{% block h1 %}
+Привет {% firstof user.get_short_name user.get_username %}
+{% endblock %}
+
+{% block h3 %}
+Редактор профиля
+{% endblock %}
+
+
+{% block content %}
+<form class="user_edit_form" action="{% url 'user_profile_update_url' %}" method="post">
+  {% csrf_token %}
+  {% include 'accounts/includes/alert.html' %}
+  <div class="user_edit_info">
+    <div class="txtb">
+      {{ form.username }}
+    </div>
+
+    <div class="txtb">
+      {{ form.email }}
+    </div>
+
+    <div class="txtb">
+      {{ form.first_name }}
+    </div>
+
+    <div class="txtb">
+      {{ form.last_name }}
+    </div>
+    <div class="stbtn">
+      <input type="submit" class="save_user_btn" value="Сохранить">
+      <a href="{% url 'user_profile_url' %}"><input type="button" class="logoutbtn" value="Отмена"></a>
+    </div>
+  </div>
+
+</form>
+{% endblock %}

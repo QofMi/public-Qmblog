@@ -1,0 +1,24 @@
+<div class="post wow zoomIn" data-wow-delay = "0.25s">
+  <div class="post_content">
+    <div class="post_img">
+      {% if post.img %}
+      <img src="{{ MEDIA_URL }}{{ post.img.url }}" alt="">
+      {% endif %}
+    </div>
+    <div id="margin" class="post_title">
+      <h2 class="post_t">{{ post.title }}</h2>
+    </div>
+    <div id="margin" class="post_date">
+      <p class="post_p">От {% firstof post.user.get_full_name or post.user.get_username %}  {{ post.date_pub }}</p>
+    </div>
+    <div id="margin" class="post_body">
+      <div class="post_p">
+        {% autoescape off %}{{ post.body|truncatewords:50 }}{% endautoescape %}
+      </div>
+    </div>
+  </div>
+  <div class="read">
+    <a href="{{ post.get_absolute_url }}"><button class="button1" type="button" name="button">Читать</button></a>
+
+  </div>
+</div>

@@ -1,0 +1,6 @@
+Django
+django-ckeditor
+Pillow
+validate-email
+requests
+environ

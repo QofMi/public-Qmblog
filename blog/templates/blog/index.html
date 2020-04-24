@@ -1,0 +1,34 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+QMBLOG
+{% endblock %}
+
+{% block h1 %}
+Блог
+{% endblock %}
+
+{% block h3 %}
+Последние новости и статьи
+{% endblock %}
+
+{% block content %}
+
+{% if page.object_list %}
+{% for post in page.object_list %}
+
+{% include 'blog/includes/post_card.html' %}
+
+
+
+{% endfor %}
+{% else %}
+<h1 class="post_detail_p">Тут пока нет записей</h1>
+{% endif %}
+
+{% endblock %}
+
+{% block paginator %}
+
+{% include 'blog/includes/paginator.html' %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'blog/base_blog.html' %}
+{% block title %}
+Редактор
+{% endblock %}
+
+{% block h1 %}
+Редактор
+{% endblock %}
+
+{% block h3 %}
+Создайте вашу новую статью
+{% endblock %}
+
+{% block content %}
+<div class="post_create_form" >
+  <form action="{% url 'posts_create_url' %}" method="post" enctype="multipart/form-data">
+    <h1 class="post_create_form_title">Редактор</h1>
+    {% csrf_token %}
+
+
+    <h4>Изображение</h4>
+    {{ form.img }}
+    <div class="form">
+      {{ form.title }}
+      {% autoescape off %}{{ form.body | safe }}{% endautoescape %}
+
+
+
+
+    </div>
+<!--
+    <div id="editor">
+
+
+    </div>
+-->
+
+
+    <button class="button1 post_create_form_button" type="submit" name="button">Создать</button>
+    <a href="{% url 'posts_list_url' %}"><button class="button1 post_cancel_form_button" type="button" name="button">Отмена</button></a>
+  </form>
+
+</div>
+{% endblock %}

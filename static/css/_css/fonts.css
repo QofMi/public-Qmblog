@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('../fonts/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'PT Sans' sans-serif;
+    src: url('../fonts/PTSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url('../fonts/PermanentMarker-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro' sans-serif;
+    src: url('../fonts/SourceSansPro-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Sigmar One';
+    src: url('../fonts/SigmarOne-Regular.ttf');
+}
