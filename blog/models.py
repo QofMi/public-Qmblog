@@ -44,8 +44,7 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = gen_slug(self.title)
-        if self.img:
-            self.img = compress(self.img)
+
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

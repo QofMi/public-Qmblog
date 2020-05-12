@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import PermissionDenied
+from .images import compress
 
 # Create ur utils here.
 
@@ -31,6 +32,8 @@ class ObjectCreateMixin:
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.user = request.user
+            if new_object.img:
+                new_object.img = compress(new_object.img)
             new_object.save()
             return redirect(new_object)
         return render(request, self.template, context={'form': form})
@@ -55,7 +58,15 @@ class ObjectUpdateMixin:
         form = self.form_model(request.POST, request.FILES, instance=object)
 
         if form.is_valid():
-            new_object = form.save()
+            new_object = form.save(commit=False)
+            try:
+                objects = Post.objects.get(slug__iexact=slug)
+                if new_object.img != objects.img:
+                    objects.img.delete()
+                    new_object.img = compress(new_object.img)
+            except:
+                pass
+            new_object.save()
             return redirect(new_object)
         return render(request, self.template, context={'form': form, self.model.__name__.lower(): object})
 
