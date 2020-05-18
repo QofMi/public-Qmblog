@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import handler404, handler403
 from django.urls import include
-from .views import home
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,7 +24,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 #    path('', redirect_blog),
-    path('', home, name='home_url'),
+    path('', include('gallery.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),

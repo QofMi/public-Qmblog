@@ -30,9 +30,19 @@ def compress(img):
                 return new_img
         except:
             pass
+
 # Генерирование имени файла
+
+# Для поста
 def upload_to(instance, filename, unique=False):
     ext = op.splitext(filename)[1]
     name = str(instance.pk or '') + filename + (str(time()) if unique else '')
     filename = md5(name.encode('utf8')).hexdigest() + ext
-    return op.join('img/', filename)
+    return op.join('post/', filename)
+
+# Для галерея
+def upload_to_gallery(instance, filename, unique=False):
+    ext = op.splitext(filename)[1]
+    name = str(instance.pk or '') + filename + (str(time()) if unique else '')
+    filename = md5(name.encode('utf8')).hexdigest() + ext
+    return op.join('gallery/', filename)

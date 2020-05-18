@@ -27,12 +27,6 @@
     transition: 0.5s;
   }
 
-
-  header {
-    font-family: 'Bebas Neue', cursive;
-    background-color: #f1f1f1;
-    height: 600px;
-  }
   .post_detail {
     width: 90%;
   }
@@ -65,24 +59,24 @@
 }
 
 @media screen and (max-width: 600px){
-  .post {
+  .gallery {
+    width: 40%;
+  }
+  .gallery:hover {
+    transform: scale(1);
+  }
+  .gallery_active {
     width: 90%;
   }
 
-  .rectangle {
-    display: none;
+  .post {
+    width: 90%;
   }
 
   .main-txt h3 {
     font-size: 12px;
     font-weight: 700;
     transition: 0.5s;
-  }
-
-  header {
-    font-family: 'Bebas Neue', cursive;
-    background-color: #f1f1f1;
-    height: 90px;
   }
 
   .post_detail {
@@ -130,6 +124,34 @@
 }
 
 @media screen and (max-width: 450px){
+  /* ГАЛЕРЕЯ */
+  .gallery {
+    width: 90%;
+  }
+
+  .auth {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 40px;
+  }
+
+  .auth a {
+    font-size: 2rem;
+  }
+  .nav {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .nav a {
+    margin-bottom: 0;
+  }
+
+  .header_txt h1 {
+    font-size: 3.5rem;
+    text-align: center;
+  }
+
   .contacts {
     width: 80%;
   }
@@ -165,6 +187,33 @@
 }
 
 @media screen and (max-width: 320px) {
+  .gallery:hover {
+    transform: scale(1);
+  }
+
+  .auth {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 40px;
+  }
+
+  .auth a {
+    font-size: 1rem;
+  }
+  .nav {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .nav a {
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+
+  .header_txt h1 {
+    font-size: 2.7rem;
+  }
+
   .g-recaptcha {
     transform:scale(0.6);
     transform-origin:0 0;

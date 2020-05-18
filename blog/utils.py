@@ -84,6 +84,7 @@ class ObjectDeleteMixin:
         if request.user.groups.filter(name="Администраторы").exists() or request.user.is_superuser:
             return render(request, self.template, context={self.model.__name__.lower(): object})
 
+
     def post(self, request, slug):
         object = self.model.objects.get(slug__iexact=slug)
         object.delete()

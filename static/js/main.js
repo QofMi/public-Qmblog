@@ -4,8 +4,9 @@ $(document).ready(function() {
   $('.menu-btn').on('click', function(e) {
     e.preventDefault;
     $(this).toggleClass('menu-btn_active');
-    $('.menu-nav').toggleClass('menu-nav_active');
+    $('.menu_nav').toggleClass('menu-nav_active');
     $('.menu-a').toggleClass('menu-a_active');
+    $('.blog_content').toggleClass('blog_content_none');
   });
 /* ---------------------------------------------------------------------- */
 
@@ -53,4 +54,8 @@ $(document).ready(function() {
     $('.admin_panel').toggleClass('admin_panel_active');
   });
 /* ---------------------------------------------------------------------- */
+  $('.gallery').on('click', function(e) {
+      e.preventDefault;
+      $(this).toggleClass('gallery_active')
+    });
 });
