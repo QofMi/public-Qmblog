@@ -70,6 +70,9 @@ coverage.xml
 # Translations
 *.mo
 
+# Environ
+.env
+
 # Scrapy stuff:
 .scrapy
 
