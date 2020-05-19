@@ -264,7 +264,7 @@
 
 /* Редактор профиля */
 .user_edit_form {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
