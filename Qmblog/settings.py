@@ -133,7 +133,7 @@ CKEDITOR_CONFIGS = {
              '-', 'NumberedList', 'BulletedList'
             ],
             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
-             '-', 'Font', 'FontSize', 'TextColor',
+             '-', 'Font', 'FontSize', 'TextColor', 'BGColor',
              '-', 'Outdent', 'Indent',
              '-', 'HorizontalRule',
              '-', 'Blockquote'

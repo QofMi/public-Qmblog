@@ -12,31 +12,10 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 # Список постов
-def posts_list(request):
-    posts = Post.objects.all()
-
-    paginator = Paginator(posts, 12)
-    page_number = request.GET.get('page', 1)
-    page = paginator.get_page(page_number)
-    is_paginated = page.has_other_pages()
-    if page.has_previous():
-        previous_url = '?page={}'.format(page.previous_page_number())
-    else:
-        previous_url = ''
-
-    if page.has_next():
-        next_url = '?page={}'.format(page.next_page_number())
-    else:
-        next_url = ''
-
-    context = {
-    'page': page,
-    'is_paginated': is_paginated,
-    'next_url': next_url,
-    'previous_url': previous_url
-    }
-
-    return render(request, 'blog/index.html', context=context)
+class posts_list(ObjectListMixin, View):
+    model = Post
+    template = 'blog/index.html'
+    page_count = 12
 
 # О Нас
 def about(request):

@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
 from .models import Gallery
-
+from django.views.generic import View
+from blog.utils import ObjectListMixin
 
 # Create your views here.
 
-def home(request):
-    gallery_list = Gallery.objects.all()
-    return render(request, 'home.html', context={'gallery_list': gallery_list})
+class gallery_list(ObjectListMixin, View):
+    model = Gallery
+    template = 'home.html'
+    page_count = 27

@@ -19,14 +19,15 @@ from django.conf.urls import handler404, handler403
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+import os
 
 
 
 urlpatterns = [
 #    path('', redirect_blog),
     path('', include('gallery.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('admin/', admin.site.urls),
+    path(os.environ.get('EDITOR'), include('ckeditor_uploader.urls')),
+    path(os.environ.get('ADMIN_URL'), admin.site.urls),
     path('blog/', include('blog.urls')),
     path('accounts/', include('accounts.urls'))
 ]

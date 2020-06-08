@@ -1,5 +1,13 @@
 {% extends 'blog/base_blog.html' %}
 
+{% block meta_title %}
+{% firstof user.username %}
+{% endblock %}
+
+{% block meta_description %}
+Профиль пользователя {% firstof user.username %}
+{% endblock %}
+
 {% block title %}
 {% firstof user.username %}
 {% endblock %}

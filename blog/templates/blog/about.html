@@ -1,9 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Qmblog.ru - это галерея моих художественных работ, а также, я явлюясь разработчиком данного web-сайта">
+    <meta property="og:title" content="О проекте qmblog">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qmblog.ru/blog/about">
+    <meta property="og:site_name" content="qmblog.ru">
+    <meta name="keywords" content="О qmblog, qmblog, Иван Шипачев, QofMi">
+    <meta property="og:image" content="{% static 'img/qmblog_prev.jpg' %}">
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
@@ -15,7 +22,7 @@
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
     <script>new WOW().init();</script>
-    <title>О проекте</title>
+    <title>О проекте qmblog</title>
   </head>
   <body>
     {% if request.user.is_authenticated and request.user.is_staff %}

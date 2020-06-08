@@ -7,6 +7,6 @@
     {% if detail %}
     <a class="panel_a" href="{{ admin_object.get_update_url }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
     {% endif %}
-    <a class="panel_a" href="/admin"><i class="fa fa-terminal" aria-hidden="true"></i></a>
+    <a class="panel_a" href="{% url 'admin:index' %}"><i class="fa fa-terminal" aria-hidden="true"></i></a>
   </div>
 </div>

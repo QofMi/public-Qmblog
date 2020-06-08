@@ -1,5 +1,5 @@
 $(document).ready(function() {
-/* Гамбургер */
+ // Гамбургер
 
   $('.menu-btn').on('click', function(e) {
     e.preventDefault;
@@ -8,9 +8,9 @@ $(document).ready(function() {
     $('.menu-a').toggleClass('menu-a_active');
     $('.blog_content').toggleClass('blog_content_none');
   });
-/* ---------------------------------------------------------------------- */
+ // ----------------------------------------------------------------------
 
-/* Вход/Регистрация */
+ // Вход/Регистрация
 
   $('.txtb input').on('focus', function(){
     $(this).addClass('focus');
@@ -21,7 +21,7 @@ $(document).ready(function() {
     $(this).removeClass('focus');
   });
 
-/* Алерт на удаление поста */
+ // Алерт на удаление поста
   $('.post_delete_button').on('click', function(e) {
     e.preventDefault;
     $('.post_delete_form').addClass('post_delete_form_active');
@@ -33,29 +33,40 @@ $(document).ready(function() {
     $('.post_delete_form_container').removeClass('post_delete_form_container_active');
   });
 
-/* Алерт на зугрузку изображения
+// Изображения
 
-  $('.post_create_form_img_button').on('click', function(e) {
-    e.preventDefault;
-    $('.post_create_form_img').addClass('post_create_form_img_active');
-    $('.post_create_form_img_container').addClass('post_create_form_img_container_active');
+  var fruit = [];
+  $(".foo").text(fruit.length);
+
+  var modal = document.getElementById("myModal");
+  var span = $(".close");
+
+  span.on("click", function() {
+    modal.style.display = "none";
   });
-  $('.cancel_button_icon').on('click', function(e) {
-    e.preventDefault;
-    $('.post_create_form_img').removeClass('post_create_form_img_active');
-    $('.post_create_form_img_container').removeClass('post_create_form_img_container_active');
-  });*/
+  var images = document.getElementsByTagName("img");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  var i;
+  for (i = 0; i < images.length; i++) {
+  images[i].onclick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.nextElementSibling.innerHTML;
+  };
+  }
 
-/* Адмиинка */
+// Адмиинка
   $('.admin-btn').on('click', function(e) {
     e.preventDefault;
     $(this).toggleClass('admin-btn_active');
     $('.admin-btn i').toggleClass('adm_i_active')
     $('.admin_panel').toggleClass('admin_panel_active');
   });
-/* ---------------------------------------------------------------------- */
-  $('.gallery').on('click', function(e) {
-      e.preventDefault;
-      $(this).toggleClass('gallery_active')
-    });
+ // ----------------------------------------------------------------------
+  // $('.gallery').on('click', function(e) {
+  //     e.preventDefault;
+  //     $(this).toggleClass('gallery_active')
+  //   });
 });

@@ -1,9 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Галерея художественных работ Шипачева Ивана">
+    <meta property="og:title" content="QMBLOG - Галерея художественных работ">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qmblog.ru/">
+    <meta property="og:site_name" content="qmblog.ru">
+    <meta name="keywords" content="Галерея qmblog, qmblog, галерея, галерея изображений, изображения, Иван Шипачев, QofMi">
+    <meta property="og:image" content="{% static 'img/qmblog_prev.jpg' %}">
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
@@ -15,7 +22,7 @@
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
     <script>new WOW().init();</script>
-    <title>QMBLOG</title>
+    <title>QMBLOG - Галерея художественных работ</title>
   </head>
   <body>
     {% if request.user.is_authenticated and request.user.is_staff %}
@@ -73,12 +80,23 @@
     </header>
 
     <div class="blog_content">
-      {% if gallery_list %}
-      {% for gallery in gallery_list %}
+      {% if page.object_list %}
+      {% for gallery in page.object_list %}
       <div class="gallery wow zoomIn" data-wow-delay = "0.25s">
-        <img src="{{ gallery.img.url }}" alt="">
+        <img src="{{ gallery.img.url }}" alt="{{gallery.title}}">
+        <div class="desc">{{gallery.title}}</div>
       </div>
       {% endfor %}
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+      </div>
+      {% endif %}
+      {% if is_paginated %}
+      <div class="paginator" >
+        {% include 'blog/includes/paginator.html' %}
+      </div>
       {% endif %}
       <div class="footer">
 

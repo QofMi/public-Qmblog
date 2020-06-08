@@ -2,11 +2,43 @@ from django.shortcuts import render, redirect, reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from .models import *
+from gallery.models import *
 from django.core.exceptions import PermissionDenied
 from .images import compress
-
+from django.core.paginator import Paginator
 # Create ur utils here.
 
+class ObjectListMixin:
+    model = None
+    template = None
+    page_count = None
+
+    def get(self, request):
+        object = self.model.objects.all()
+
+        paginator = Paginator(object, self.page_count)
+        page_number = request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+        is_paginated = page.has_other_pages()
+        if page.has_previous():
+            previous_url = '?page={}'.format(page.previous_page_number())
+        else:
+            previous_url = ''
+
+        if page.has_next():
+            next_url = '?page={}'.format(page.next_page_number())
+        else:
+            next_url = ''
+
+        context = {
+        'page': page,
+        'is_paginated': is_paginated,
+        'next_url': next_url,
+        'previous_url': previous_url
+        }
+
+        return render(request, self.template, context=context)
+        
 class ObjectDetailMixin:
     model = None
     template = None

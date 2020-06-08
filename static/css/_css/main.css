@@ -389,7 +389,6 @@ header {
   align-items: center;
   width: 100%;
   margin-top: 5%;
-  z-index: 999;
 }
 
 ul {
@@ -409,6 +408,7 @@ ul li.page-link {
   height: 50px;
   line-height: 50px;
   text-align: center;
+  transition: .4s cubic-bezier(.55,0,.1,1);
 }
 
 ul li a {
@@ -421,6 +421,7 @@ ul li.page-link:hover a,
 ul li.page-link.active a {
   background: #333;
   color: #fff;
+  transition: .4s cubic-bezier(.55,0,.1,1);
 }
 
 .page-item.disabled {
@@ -515,7 +516,6 @@ ul li:last-child {
   color: #282828;
 }
 
-
 .post_create_form_button_container {
   text-align: left;
 }
@@ -585,23 +585,98 @@ ul li:last-child {
   height: auto;
   width: 30%;
   margin: 1%;
-  transform: scale(1);
   cursor: pointer;
-  transition: .2s cubic-bezier(.55,0,.1,1);
 }
 
 .gallery img{
   height: 100%;
   width: 100%;
+  transform: scale(1);
   border-radius: 10px;
+  transition: .2s cubic-bezier(.55,0,.1,1);
 }
 
-.gallery:hover {
+.gallery img:hover {
   transform: scale(1.1);
 }
 
-.gallery_active {
+.modal img{
+  border-radius: 10px;
+}
+
+.modal img:hover {
+  opacity: 1;
+}
+
+.desc, #caption {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.desc {
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  padding-top: 10rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  z-index: 99;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
   width: 80%;
+  max-width: 800px;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover, .close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 /* ------------------------------------------------------------------------ */
 
@@ -649,14 +724,14 @@ ul li:last-child {
   justify-content: center;
   align-items: center;
   background-color: #333;
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
   transform: translateX(-100%);
   z-index: 999;
 }
 
 .admin_panel_active {
   transform: translateX(0);
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
   top: 25%;
   height: 50%;
 }
@@ -678,36 +753,36 @@ ul li:last-child {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
   cursor: pointer;
 }
 
 .admin-btn_active {
   top: 80%;
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
 }
 
 .admin-btn i {
   font-size: 1.5rem;
   color: #333;
   transform: rotate(90deg);
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
 }
 .admin-btn i.adm_i_active {
   transform: rotate(-90deg);
-  transition: 0.5s;
+  transition: 0.5s cubic-bezier(.55,0,.1,1);
 }
 
 .panel_a {
   font-size: 2rem;
   color: #fff;
   transform: scale(1);
-  transition: 0.25s;
+  transition: 0.25s cubic-bezier(.55,0,.1,1);
 }
 
 .panel_a:hover {
   transform: scale(1.2);
-  transition: 0.25s;
+  transition: 0.25s cubic-bezier(.55,0,.1,1);
 }
 
 /* ------------------------------------------------------------------------ */

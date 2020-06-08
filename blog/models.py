@@ -23,7 +23,7 @@ class Post(models.Model):
     title = models.CharField('Заголовок', max_length=150, db_index=True)
     slug = models.SlugField('Идентификатор',max_length=150, blank=True, unique=True)
     img = models.ImageField('Изображение',upload_to=upload_to,  blank=True,)
-    body = RichTextUploadingField('Текст', config_name='default', blank=True, null=True, db_index=True)
+    body = RichTextUploadingField('Текст', config_name='default', blank=True, null=True)
     date_pub = models.DateTimeField('Дата публикации', auto_now_add=True)
     user = models.ForeignKey( User, on_delete=models.SET_NULL, verbose_name='Пользователь', blank=True, null=True)
 

@@ -1,5 +1,13 @@
 {% extends 'blog/base_blog.html' %}
 
+{% block meta_title %}
+{{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block meta_description %}
+{{ post.title }} - {{ block.super }}
+{% endblock %}
+
 {% block title %}
 {{ post.title }} - {{ block.super }}
 {% endblock %}

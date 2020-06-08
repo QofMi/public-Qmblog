@@ -15,6 +15,9 @@ from django.conf import settings
 
 # Авторизация
 from django.contrib.auth import authenticate, login, logout
+from .decorators import get_client_ip
+from .models import *
+from django.utils import timezone
 # Create ur utils here.
 
 # Авторизация
@@ -38,6 +41,29 @@ class LoginUserMixin:
         'has_error': False
         }
 
+        ip = get_client_ip(request)
+        obj, created = TemporaryBanIp.objects.get_or_create(
+            defaults={
+                'ip_address': ip,
+                'time_unblock': timezone.now()
+            },
+            ip_address=ip
+        )
+
+        if obj.status is True and obj.time_unblock > timezone.now():
+            if obj.attempts == 3 or obj.attempts == 6:
+                messages.add_message(request, messages.ERROR, 'Попытки входа ограничены на 15 минут')
+                context['has_error']=True
+
+            elif obj.attempts == 9:
+                messages.add_message(request, messages.ERROR, 'Попытки входа ограничены на 24 часа')
+                context['has_error']=True
+            return render(request, self.template, status=401, context=context)
+
+        elif obj.status is True and obj.time_unblock < timezone.now():
+            obj.status = False
+            obj.save()
+
         username = self.request.POST.get('username')
         password = self.request.POST.get('password')
 
@@ -48,16 +74,30 @@ class LoginUserMixin:
             context['has_error']=True
 
         if context['has_error']:
+            obj.attempts += 1
+            if obj.attempts == 3 or obj.attempts == 6:
+                obj.time_unblock = timezone.now() + timezone.timedelta(minutes=15)
+                obj.status = True
+            elif obj.attempts == 9:
+                obj.time_unblock = timezone.now() + timezone.timedelta(1)
+                obj.status = True
+            elif obj.attempts > 9:
+                obj.attempts = 1
+            obj.save()
             return render(request, self.template, status=401, context=context)
 
         if self.request.recaptcha_is_valid:
-            login(request, user)
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
-            else:
-                return redirect(reverse(self.redirect_url))
+            if obj.status == False:
+                login(request, user)
+                obj.delete()
+                if 'next' in request.POST:
+                    return redirect(request.POST.get('next'))
+                else:
+                    return redirect(reverse(self.redirect_url))
 
-        return render(request, self.template, context={'form': form})
+
+
+        return render(request, self.template, context=context)
 
 # Регистрация (создание) пользователя
 
