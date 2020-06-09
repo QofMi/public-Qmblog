@@ -36,20 +36,20 @@
           </div>
           <div class="menu_nav_container">
             <nav class="menu_nav">
-            <div class="nav">
-              <a class="menu-a" href="{% url 'home_url' %}">Домой</a>
-              <a class="menu-a" href="{% url 'posts_list_url' %}">Блог</a>
-              <a class="menu-a" href="{% url 'about_url' %}">О проекте</a>
-            </div>
-            <div class="auth">
-              {% if request.user.is_authenticated %}
-              <a class="menu-a" href="{% url 'user_profile_url' %}">{% firstof user.get_username %}</a>
-              {% else %}
-              <a class="menu-a" href="{% url 'sign_in_url' %}">Вход</a>
-              <a class="menu-a" href="{% url 'sign_up_url' %}">Регистрация</a>
-              {% endif %}
-              <a class="menu-a" href="{% url 'policy_url' %}">Политика конф</a>
-            </div>
+              <div class="nav">
+                <a class="menu-a" href="{% url 'home_url' %}">Домой</a>
+                <a class="menu-a" href="{% url 'posts_list_url' %}">Блог</a>
+                <a class="menu-a {% if page_active %}page_active{% endif %}" href="{% url 'about_url' %}">О проекте</a>
+              </div>
+              <div class="auth">
+                {% if request.user.is_authenticated %}
+                <a class="menu-a" href="{% url 'user_profile_url' %}">{% firstof user.get_username %}</a>
+                {% else %}
+                <a class="menu-a" href="{% url 'sign_in_url' %}">Вход</a>
+                <a class="menu-a" href="{% url 'sign_up_url' %}">Регистрация</a>
+                {% endif %}
+                <a class="menu-a" href="{% url 'policy_url' %}">Политика конф</a>
+              </div>
             <div class="contacts">
               <a target="_blank" href="https://vk.com/qofmi">
                 <div class="vk">

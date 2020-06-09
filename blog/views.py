@@ -19,7 +19,7 @@ class posts_list(ObjectListMixin, View):
 
 # О Нас
 def about(request):
-    return render(request, 'blog/about.html')
+    return render(request, 'blog/about.html', context={'page_active': True})
 
 # Создание постов
 class post_create(LoginRequiredMixin, PermissionRequiredMixin, ObjectCreateMixin, View):

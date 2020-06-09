@@ -191,6 +191,10 @@
     width: 100%;
   }
 
+  .admin-btn_active {
+    top: 75%;
+  }
+
 }
 
 @media screen and (max-width: 320px) {

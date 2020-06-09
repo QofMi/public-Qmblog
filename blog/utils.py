@@ -34,11 +34,12 @@ class ObjectListMixin:
         'page': page,
         'is_paginated': is_paginated,
         'next_url': next_url,
-        'previous_url': previous_url
+        'previous_url': previous_url,
+        'page_active': True
         }
 
         return render(request, self.template, context=context)
-        
+
 class ObjectDetailMixin:
     model = None
     template = None

@@ -216,13 +216,8 @@ header {
 
 .nav a {
   font-size: 4rem;
-  color: rgb(158, 158, 158);
   transition: .4s cubic-bezier(.55,0,.1,1);
   margin-bottom: 25px;
-}
-
-.nav a:hover {
-  color: #fff;
 }
 
 .auth {
@@ -264,11 +259,22 @@ header {
   color: #fff;
 }
 .menu-a {
+  color: rgb(158, 158, 158);
   animation: 1.2s cubic-bezier(.55,0,.1,1) forwards menu-2-reverse;
 }
+
+.menu-a:hover {
+  color: #fff;
+}
+
 .menu-a_active {
   animation: 1.2s cubic-bezier(.55,0,.1,1) forwards menu-2;
 }
+
+.page_active {
+  color: #fff;
+}
+
 @keyframes menu-2{
   from {
     opacity: 0;
