@@ -166,6 +166,7 @@
   margin-bottom: 2%;
   padding: 20px;
   background-color: #f3f3f3;
+  border-radius: 10px;
 }
 
 .user_info h1 {
@@ -234,6 +235,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 .user_post_container {
@@ -255,11 +257,20 @@
   padding: 10px;
   height: auto;
   background-color: #dbdbdb;
+  border-radius: 10px;
+  transition: 0.2s cubic-bezier(.55,0,.1,1);
   color: #333;
 }
 
 .user_post_card img {
   width: 200px;
+  border-radius: 10px;
+}
+
+#user_post_card:hover {
+  background-color: #eaeaea;
+  transition: 0.2s cubic-bezier(.55,0,.1,1);
+
 }
 
 /* Редактор профиля */

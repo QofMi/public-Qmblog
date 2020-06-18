@@ -62,7 +62,7 @@
       </div>
 
       {% for order_list in order_lists %}
-      <a class="user_post_card" href="{{order_list.get_absolute_url}}">
+      <a id="user_post_card" class="user_post_card" href="{{order_list.get_absolute_url}}">
         <h4>{{order_list.title|truncatewords:4}}</h4>
         <h4>{{order_list.date_pub}}</h4>
         {% if order_list.img %}
