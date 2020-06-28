@@ -1,5 +1,64 @@
-{% autoescape off %}
-Привет {{ user.username }}.
-Пожалуйста пройдите по ссылке ниже, для подтверждения вашей электронной почты и активациии аккаунта!
-http://{{domain}}{% url 'activate' uidb64=uid token=token %}
-{% endautoescape %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Подтвердите ваш электронный адрес</title>
+
+
+  </head>
+  <body style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: ;a[href^='mailto']
+        text-decoration: none !important; color: #b4b4b4 !important; height: 100% !important; margin: 0; padding: 0; width: 100% !important;">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <table class="container" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse !important; height: 100%; max-width: 600px; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;">
+      <tr>
+        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+          <table class="row" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse !important; mso-table-lspace: 0; mso-table-rspace: 0;">
+            <tr>
+              <td class="logo" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #f9cec8; font-family: 'Permanent Marker', cursive; font-size: 48px; mso-table-lspace: 0; mso-table-rspace: 0; padding: 20px 0 20px;"><a href="https://qmblog.ru/" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #f9cec8; text-decoration: none;">QMBLOG</a></td>
+            </tr>
+          </table> <!-- Строка -->
+        </td>
+      </tr>
+
+      <tr>
+        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+          <table class="content" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: #f9cec8; border-collapse: collapse !important; border-radius: 10px; height: 90%; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 40px; width: 80%;">
+            <tbody class="welcome" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+                  <img class="welcome-img" src="https://qmblog.ru/Qmblog/static/img/welcome-email-img.png" alt style="-ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; padding: 20px 0 40px; text-decoration: none; width: 80%;">
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="hi_user" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 32px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 50px;">
+                  Привет {{ user.username }}.
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="txt" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 70px;">
+                  Пожалуйста нажмите на кнопку ниже, для подтверждения вашей электронной почты и активациии аккаунта!
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="button" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0px 0 60px;">
+                  <a href="https://{{domain}}{% url 'activate' uidb64=uid token=token %}" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: #ffffff; border-radius: 20px; color: #f9cec8; font-family: 'PT Sans', sans-serif; font-size: 20px; font-weight: 700; padding: 12px 25px; text-align: center; text-decoration: none; text-transform: uppercase;">Подтвердить почту</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table> <!-- Контейнер -->
+  </body>
+</html>

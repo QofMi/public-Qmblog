@@ -26,6 +26,17 @@ def check_recaptcha(function):
     wrap.__name__ = function.__name__
     return wrap
 
+# Проверка на авторизацию (пока не юзаю)
+def check_authenticated(function):
+    def wrap(request, *args, **kwargs):
+        if request.method == 'GET':
+            if not request.user.is_authenticated and request.user.is_staff:
+                return redirect(reverse('sign_in_url'))
+
+        return function(request, *args, **kwargs)
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_REAL_IP')
@@ -34,3 +45,21 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def get_user_agent(request):
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    if 'Windows NT' in user_agent:
+        user_agent = 'Windows'
+    elif 'Linux' and 'Android' in user_agent:
+        user_agent = 'Android'
+    elif 'Linux' in user_agent:
+        user_agent = 'Linux'
+    elif 'iPhone' in user_agent:
+        user_agent = 'iPhone'
+    elif 'iPad' in user_agent:
+        user_agent = 'iPad'
+    elif 'Macintosh' and 'Mac OS' in user_agent:
+        user_agent = 'Mac'
+    else:
+        user_agent = 'None'
+    return user_agent

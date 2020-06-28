@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Новый вход в вашу учетную запись</title>
+
+
+  </head>
+  <body style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background-color: ;a[href^='mailto']
+        text-decoration: none !important; color: #b4b4b4 !important; height: 100% !important; margin: 0; padding: 0; width: 100% !important;">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <table class="container" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse !important; height: 100%; max-width: 600px; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;">
+      <tr>
+        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+          <table class="row" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse !important; mso-table-lspace: 0; mso-table-rspace: 0;">
+            <tr>
+              <td class="logo" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-family: 'Permanent Marker', cursive; font-size: 48px; mso-table-lspace: 0; mso-table-rspace: 0; padding: 20px 0 20px;"><a href="https://qmblog.ru/" target="_blank" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #d4534a; text-decoration: none;">QMBLOG</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+          <table class="content" align="center" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: #d4534a; border-collapse: collapse !important; border-radius: 10px; height: 90%; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 40px; width: 80%;">
+            <tbody class="welcome" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-table-lspace: 0; mso-table-rspace: 0;">
+                  <img class="welcome-img" src="https://qmblog.ru/Qmblog/static/img/hello_email_img.png" alt style="-ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; padding: 20px 0 40px; text-decoration: none; width: 80%;">
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="hi_user" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 32px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 50px; text-align: center;">
+                  Новый вход в {{domain}}
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="txt" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 70px;">
+                  Привет {{ user.username }}.
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="txt" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 70px;">
+                  Мы заметили новый вход в систему с вашей учетной записи {{domain}} ({{ user.email }})
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody align="left">
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  Дата-Время:
+                </td>
+              </tr>
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  {{time}}
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody align="left">
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  Ip адрес:
+                </td>
+              </tr>
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  {{ip_address}}
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody align="left">
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  Устройство:
+                </td>
+              </tr>
+              <tr>
+                <td class="txt_user_agent" style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 20px 20px;">
+                  {{user_agent}}
+                </td>
+              </tr>
+            </tbody>
+
+            <tbody class="txt" align="center">
+              <tr>
+                <td style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; color: #ffffff; font-family: 'PT Sans', sans-serif; font-size: 24px; font-weight: 700; mso-table-lspace: 0; mso-table-rspace: 0; padding: 0 0 70px;">
+                  Если вход совершен не вами, то необходимо сменить пароль от вашей учетной записи или обратитесь в службу поддержки support@qmblog.ru
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -6,16 +6,17 @@ from django.contrib import messages
 from validate_email import validate_email
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
 from .token import generate_token
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.conf import settings
 
 # Авторизация
 from django.contrib.auth import authenticate, login, logout
-from .decorators import get_client_ip
+from .decorators import get_client_ip, get_user_agent
 from .models import *
 from django.utils import timezone
 # Create ur utils here.
@@ -41,6 +42,7 @@ class LoginUserMixin:
         'has_error': False
         }
 
+        user_agent = get_user_agent(request)
         ip = get_client_ip(request)
         obj, created = TemporaryBanIp.objects.get_or_create(
             defaults={
@@ -90,6 +92,30 @@ class LoginUserMixin:
             if obj.status == False:
                 login(request, user)
                 obj.delete()
+
+                current_site = get_current_site(request)
+                email_subgect = 'Новый вход в вашу учетную запись'
+                html_content = render_to_string('accounts/hello_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'time': timezone.now(),
+                'ip_address': ip,
+                'user_agent': user_agent,
+                })
+                text_content = strip_tags(html_content)
+                email_message = EmailMultiAlternatives(
+                #Объект
+                email_subgect,
+                # Контент
+                text_content,
+                # От кого
+                settings.EMAIL_HOST_USER,
+                # Кому
+                [user.email]
+                )
+                email_message.attach_alternative(html_content, "text/html")
+                email_message.send()
+
                 if 'next' in request.POST:
                     return redirect(request.POST.get('next'))
                 else:
@@ -164,20 +190,24 @@ class CreateUserMixin:
 
             current_site = get_current_site(request)
             email_subgect = 'Подтвердите ваш электронный адрес'
-            message = render_to_string('accounts/activate.html', {
+            html_content = render_to_string('accounts/activate.html', {
             'user': user,
             'domain': current_site.domain,
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': generate_token.make_token(user)
             })
-
-            email_message = EmailMessage(
+            text_content = strip_tags(html_content)
+            email_message = EmailMultiAlternatives(
+            #Объект
             email_subgect,
-            message,
+            # Контент
+            text_content,
+            # От кого
             settings.EMAIL_HOST_USER,
+            # Кому
             [email]
             )
-
+            email_message.attach_alternative(html_content, "text/html")
             email_message.send()
 
             messages.add_message(request, messages.SUCCESS, 'Подтвердите ваш электронный адрес')
