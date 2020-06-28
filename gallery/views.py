@@ -8,3 +8,4 @@ class gallery_list(ObjectListMixin, View):
     model = Gallery
     template = 'home.html'
     page_count = 27
+    page_name = 'page_home'

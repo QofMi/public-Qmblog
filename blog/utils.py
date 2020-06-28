@@ -12,6 +12,7 @@ class ObjectListMixin:
     model = None
     template = None
     page_count = None
+    page_name = None
 
     def get(self, request):
         object = self.model.objects.all()
@@ -35,7 +36,7 @@ class ObjectListMixin:
         'is_paginated': is_paginated,
         'next_url': next_url,
         'previous_url': previous_url,
-        'page_active': True
+        self.page_name: True
         }
 
         return render(request, self.template, context=context)

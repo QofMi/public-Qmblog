@@ -49,7 +49,7 @@ class AdminUser(UserAdmin):
         }),
         (('Важные даты'), {'fields': ('last_login', 'date_joined')}),
     )
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'last_login',)
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'last_login',)
     def change_view(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             try:

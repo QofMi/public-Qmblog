@@ -1,100 +1,47 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Qmblog.ru - это галерея моих художественных работ, а также, я явлюясь разработчиком данного web-сайта">
-    <meta property="og:title" content="О проекте qmblog">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://qmblog.ru/blog/about">
-    <meta property="og:site_name" content="qmblog.ru">
-    <meta name="keywords" content="О qmblog, qmblog, Иван Шипачев, QofMi">
-    <meta property="og:image" content="{% static 'img/qmblog_prev.jpg' %}">
-    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico' %}" type="image/x-icon">
-  	<link rel="apple-touch-icon" href="{% static 'img/favicon/apple-touch-icon.png' %}">
-  	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/favicon/apple-touch-icon-72x72.png' %}">
-  	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/favicon/apple-touch-icon-114x114.png' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
-    <script>new WOW().init();</script>
-    <title>О проекте qmblog</title>
-  </head>
-  <body>
-    {% if request.user.is_authenticated and request.user.is_staff %}
-    {% include 'blog/includes/admin_panel.html' %}
-    {% endif %}
-    <header class="about">
-      <div class="menu_container">
-        <div class="menu">
-          <div class="qmblog">
-            <a href="{% url 'home_url' %}"><h1>QMBLOG</h1></a>
-          </div>
-          <div class="menu_nav_container">
-            <nav class="menu_nav">
-              <div class="nav">
-                <a class="menu-a" href="{% url 'home_url' %}">Домой</a>
-                <a class="menu-a" href="{% url 'posts_list_url' %}">Блог</a>
-                <a class="menu-a {% if page_active %}page_active{% endif %}" href="{% url 'about_url' %}">О проекте</a>
-              </div>
-              <div class="auth">
-                {% if request.user.is_authenticated %}
-                <a class="menu-a" href="{% url 'user_profile_url' %}">{% firstof user.get_username %}</a>
-                {% else %}
-                <a class="menu-a" href="{% url 'sign_in_url' %}">Вход</a>
-                <a class="menu-a" href="{% url 'sign_up_url' %}">Регистрация</a>
-                {% endif %}
-                <a class="menu-a" href="{% url 'policy_url' %}">Политика конф</a>
-              </div>
-            <div class="contacts">
-              <a target="_blank" href="https://vk.com/qofmi">
-                <div class="vk">
-                  <i class="fa fa-vk" aria-hidden="true"></i>
-                </div>
-              </a>
-              <a target="_blank" href="https://twitter.com/QueenOfMirana">
-                <div class="twitter">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </div>
-              </a>
-              <a target="_blank" href="https://github.com/QofMi?tab=repositories">
-                <div class="git">
-                  <i class="fa fa-github" aria-hidden="true"></i>
-                </div>
-              </a>
-            </div>
-            </nav>
-            <div class="menu-btn">
-              <span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="header_txt">
-        <h1 class="wow fadeInUp" data-wow-delay = "0.5s">О проекте</h1>
-      </div>
-    </header>
 
-    <div class="blog_content">
-      <div class="about_content">
-        <img src="{% static 'img/QofMi.png' %}" alt="">
-        <h1>QMBLOG</h1>
-        <h2>Привет, меня зовут Иван Шипачев.</h2>
-        <h2>Qmblog.ru - это галерея моих художественных работ,</h2>
-        <h2>а также, я явлюясь разработчиком данного web-сайта</h2>
+{% block meta_description %}
+Qmblog.ru - это галерея моих художественных работ, а также, я явлюясь разработчиком данного web-сайта
+{% endblock %}
 
-        <h1>Контакты</h1>
-        <h2>Электронный адрес - qofmi@qmblog.ru</h2>
+{% block meta_title %}
+О проекте qmblog
+{% endblock %}
 
-        <img class="QM" src="{% static 'img/QM.png' %}" alt="">
-      </div>
-      <div class="footer">
+{% block meta_url %}
+https://qmblog.ru/blog/about
+{% endblock %}
 
-      </div>
-    </div>
-  </body>
-</html>
+{% block meta_keywords %}
+О qmblog, qmblog, Иван Шипачев, QofMi
+{% endblock %}
+
+{% block title %}
+О проекте qmblog
+{% endblock %}
+
+{% block header_class_image %}
+about
+{% endblock %}
+
+{% block h1 %}
+О проекте
+{% endblock %}
+
+
+{% block content %}
+<div class="about_content">
+  <img src="{% static 'img/QofMi.png' %}" alt="">
+  <h1>QMBLOG</h1>
+  <h2>Привет, меня зовут Иван Шипачев.</h2>
+  <h2>Qmblog.ru - это галерея моих художественных работ,</h2>
+  <h2>а также, я явлюясь разработчиком данного web-сайта</h2>
+
+  <h1>Контакты</h1>
+  <h2>Электронный адрес - qofmi@qmblog.ru</h2>
+
+  <img class="QM" src="{% static 'img/QM.png' %}" alt="">
+</div>
+
+{% endblock %}

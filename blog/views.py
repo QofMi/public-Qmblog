@@ -16,10 +16,11 @@ class posts_list(ObjectListMixin, View):
     model = Post
     template = 'blog/index.html'
     page_count = 12
+    page_name = 'page_blog'
 
 # О Нас
 def about(request):
-    return render(request, 'blog/about.html', context={'page_active': True})
+    return render(request, 'blog/about.html', context={'page_about': True})
 
 # Создание постов
 class post_create(LoginRequiredMixin, PermissionRequiredMixin, ObjectCreateMixin, View):
