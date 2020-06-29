@@ -1,9 +1,12 @@
 from django.db import models
 from blog.images import compress, upload_to_gallery
 from blog.models import gen_slug
-# Create your models here.
+
 
 class Gallery(models.Model):
+    """
+    Модель изображений в галереи
+    """
     title = models.CharField('Заголовок', max_length=150, db_index=True)
     slug = models.SlugField('Идентификатор',max_length=150, blank=True, unique=True)
     img = models.ImageField('Изображение',upload_to=upload_to_gallery,)

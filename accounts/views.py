@@ -6,68 +6,80 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# Ркгистрация
-from django.contrib import messages
-from validate_email import validate_email
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from .token import generate_token
-from django.core.mail import EmailMessage
-from django.conf import settings
-
 # Авторизация
 from django.contrib.auth import authenticate, login, logout
+
 # Профиль
 from blog.models import Post
+
 # Смена пароля
 from django.contrib.auth.forms import PasswordChangeForm
 
-# Create your views here.
 
-# Авторизация
-class sign_in(LoginUserMixin, View):
+class SignIn(LoginUserMixin, View):
+    """
+    Авторизация
+    """
     form_model = LoginUserForm
     template = 'accounts/sign_in.html'
     redirect_url = 'home_url'
     redirect_url_is_authenticated = 'user_profile_url'
 
-# Регистрация
-class sign_up(CreateUserMixin, View):
+
+class SignUp(CreateUserMixin, View):
+    """
+    Регистрация
+    """
     form_model = CreateUserForm
     template = 'accounts/sign_up.html'
     redirect_url = 'sign_in_url'
     redirect_url_is_authenticated = 'user_profile_url'
 
-# Политика конфиденциальности
-def Policy(request):
+
+def policy(request):
+    """
+    Политика конфиденциальности
+    """
     return render(request, 'accounts/policy.html')
 
-# Выход
-def LogoutUser(request):
+
+def logout_user(request):
+    """
+    Выход из системы
+    """
     logout(request)
     return redirect(reverse('home_url'))
 
-# Активация
+
 class ActivateUserAccounts(ActivateUser, View):
+    """
+    Активация
+    """
     template = 'accounts/activate_fail.html'
     redirect_url = 'sign_in_url'
 
-# Профиль пользователя
+
 class UserProfile(LoginRequiredMixin, UserProfileMixin, View):
+    """
+    Профиль пользователя
+    """
     model = Post
     template = 'accounts/user_profile.html'
 
 
-# Редактирование профиля
 class UserProfileUpdate(LoginRequiredMixin, UserProfileUpdateMixin, View):
+    """
+    Редактирование профиля
+    """
     template = 'accounts/user_profile_edit.html'
     form_model = UserProfileUpdateForm
     redirect_url = 'user_profile_url'
 
-# Смена пароля
+
 class ChangeUserPassword(LoginRequiredMixin, ChangeUserPasswordMixin, View):
+    """
+    Смена пароля пользователя
+    """
     template = 'accounts/user_change_password.html'
     redirect_url = 'user_profile_url'
     form_model = PasswordChangeForm

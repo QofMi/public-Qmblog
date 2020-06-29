@@ -6,9 +6,12 @@ from gallery.models import *
 from django.core.exceptions import PermissionDenied
 from .images import compress
 from django.core.paginator import Paginator
-# Create ur utils here.
+
 
 class ObjectListMixin:
+    """
+    Отображение контента на странице с пагинацией
+    """
     model = None
     template = None
     page_count = None
@@ -41,7 +44,11 @@ class ObjectListMixin:
 
         return render(request, self.template, context=context)
 
+
 class ObjectDetailMixin:
+    """
+    Детали поста
+    """
     model = None
     template = None
 
@@ -53,7 +60,11 @@ class ObjectDetailMixin:
         'detail': True
         })
 
+
 class ObjectCreateMixin:
+    """
+    Создание поста
+    """
     form_model = None
     template = None
 
@@ -72,7 +83,11 @@ class ObjectCreateMixin:
             return redirect(new_object)
         return render(request, self.template, context={'form': form})
 
+
 class ObjectUpdateMixin:
+    """
+    Обновление поста
+    """
     model = None
     template = None
     form_model = None
@@ -80,6 +95,7 @@ class ObjectUpdateMixin:
     def get(self, request, slug):
         object = self.model.objects.get(slug__iexact=slug)
         form = self.form_model(instance=object)
+
         if request.user.groups.filter(name="Модераторы").exists():
             if object.user != self.request.user:
                 raise PermissionDenied
@@ -102,9 +118,14 @@ class ObjectUpdateMixin:
                 pass
             new_object.save()
             return redirect(new_object)
+
         return render(request, self.template, context={'form': form, self.model.__name__.lower(): object})
 
+
 class ObjectDeleteMixin:
+    """
+    Удаление поста
+    """
     model = None
     template = None
     redirect_url = None
@@ -117,7 +138,6 @@ class ObjectDeleteMixin:
             return render(request, self.template, context={self.model.__name__.lower(): object})
         if request.user.groups.filter(name="Администраторы").exists() or request.user.is_superuser:
             return render(request, self.template, context={self.model.__name__.lower(): object})
-
 
     def post(self, request, slug):
         object = self.model.objects.get(slug__iexact=slug)

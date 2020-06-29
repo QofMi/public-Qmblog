@@ -4,26 +4,30 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.utils.html import mark_safe
 
-
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch.dispatcher import receiver
 from django.contrib.auth.admin import UserAdmin
 from django.core.exceptions import PermissionDenied
-# Register your models here.
+
 
 admin.site.site_title = 'QMBLOG'
 admin.site.site_header = 'QMBLOG'
 
-#-------------------------------------------------------------------------------
 
 @admin.register(Post)
 class AdminPost(admin.ModelAdmin):
+    """
+    Регистраци модели Post в административной части сайта
+    """
     list_display = ['title', 'user', 'date_pub', 'get_img']
     exclude = ['slug']
     def get_img(self, obj):
         return mark_safe(f'<img src={obj.img.url} width="200" height="auto">')
 
     def change_view(self, request, *args, **kwargs):
+        """
+        Разграничение отображения контента модели Post для пользователей в определенной группе
+        """
         if request.user.is_superuser:
             self.readonly_fields = ('get_img', 'user', 'date_pub',)
             return super(AdminPost, self).change_view(request, *args, **kwargs)
@@ -36,11 +40,12 @@ class AdminPost(admin.ModelAdmin):
             return super(AdminPost, self).change_view(request, *args, **kwargs)
 
     get_img.short_description = 'Изображение'
-#-------------------------------------------------------------------------------
 
 
-# Разграничение отображения контента для персонала и суперпользователя при изменении польвателя
 class AdminUser(UserAdmin):
+    """
+    Разграничение отображения контента для персонала и суперпользователя
+    """
     staff_fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (('Персональная информация'), {'fields': ('first_name', 'last_name', 'email')}),
@@ -64,6 +69,9 @@ class AdminUser(UserAdmin):
             return super(AdminUser, self).change_view(request, *args, **kwargs)
 
     def get_form(self, request, obj=None, **kwargs):
+        """
+        Включение статуса персонала при присваивании пользователю определенной группы
+        """
         defaults = {}
         if obj is None:
             defaults['form'] = self.add_form
@@ -83,10 +91,11 @@ class AdminUser(UserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, AdminUser)
 
-#-------------------------------------------------------------------------------
 
-# Запрет на удаление суперпользователя
 @receiver(pre_delete, sender=User)
 def delete_user(sender, instance, **kwargs):
+    """
+    Запрет на удаление суперпользователя
+    """
     if instance.is_superuser:
         raise PermissionDenied

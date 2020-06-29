@@ -43,7 +43,7 @@ https://qmblog.ru/accounts/signup/
     <span data-placeholder="Подтвердите пароль"></span>
   </div>
   {{ form.checkbox }} Я принимаю условия <a href="{% url 'policy_url' %}">Политики конфиденциальности</a>.
-  <div class="g-recaptcha" data-sitekey="6Lf1St8UAAAAAPZ3UKxzVv1osrR7TfDRmKjbJgto"></div>
+  <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
   <input type="submit" class="logbtn" value="Создать аккаунт">
 </form>
 

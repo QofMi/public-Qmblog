@@ -7,19 +7,19 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Логин
-    path('signin/', check_recaptcha(sign_in.as_view()), name='sign_in_url'),
+    path('signin/', check_recaptcha(SignIn.as_view()), name='sign_in_url'),
 
     # Регистрация
-    path('signup/', check_recaptcha(sign_up.as_view()), name='sign_up_url'),
+    path('signup/', check_recaptcha(SignUp.as_view()), name='sign_up_url'),
 
     # Политика конфиденцииальности
-    path('policy/', Policy, name='policy_url'),
+    path('policy/', policy, name='policy_url'),
 
     # Активация/Подтверждение почты
     path('activate/<uidb64>/<token>', ActivateUserAccounts.as_view(), name='activate'),
 
     # Выход
-    path('logout/', LogoutUser, name='logout_url'),
+    path('logout/', logout_user, name='logout_url'),
 
     # Профиль пользователя
     path('user/', UserProfile.as_view(), name='user_profile_url'),

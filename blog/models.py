@@ -6,20 +6,25 @@ from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from .images import compress, upload_to
 
-# Create your models here.
 
-# Генерация slug и перевод из кириллицы в транслит
+# Алфавит для перевода из кириллицы в транслит
 alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
             'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
             'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ы': 'i', 'э': 'e', 'ю': 'yu',
             'я': 'ya'}
 
 def gen_slug(s):
+    """
+    Генерация slug и перевод из кириллицы в транслит
+    """
     new_slug = slugify(''.join(alphabet.get(w, w) for w in s.lower()))
     return new_slug + '-' + str(int(time()))
-#---------------------------------------------------------------------------------------
+
 
 class Post(models.Model):
+    """
+    Модель записи в блоге
+    """
     title = models.CharField('Заголовок', max_length=150, db_index=True)
     slug = models.SlugField('Идентификатор',max_length=150, blank=True, unique=True)
     img = models.ImageField('Изображение',upload_to=upload_to,  blank=True,)

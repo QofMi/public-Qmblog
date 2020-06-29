@@ -2,17 +2,19 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 
-# Create ur form heere
+
 class CreateUserForm(UserCreationForm, forms.Form):
     checkbox = forms.BooleanField()
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+
 class LoginUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
 
 class UserProfileUpdateForm(UserChangeForm, forms.Form):
     class Meta:

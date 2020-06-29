@@ -19,10 +19,12 @@ from django.contrib.auth import authenticate, login, logout
 from .decorators import get_client_ip, get_user_agent
 from .models import *
 from django.utils import timezone
-# Create ur utils here.
 
-# Авторизация
+
 class LoginUserMixin:
+    """
+    Авторизация пользователя
+    """
     form_model = None
     template = None
     redirect_url = None
@@ -30,12 +32,23 @@ class LoginUserMixin:
 
     def get(self, request):
         form = self.form_model()
+
+        context = {
+        'form': form,
+        'public_key': settings.RECAPTCHA_PUBLIC_KEY,
+        }
+
         if not request.user.is_authenticated:
-            return render(request, self.template, context={'form': form})
+            return render(request, self.template, context=context)
         else:
             return redirect(reverse(self.redirect_url_is_authenticated))
 
     def post(self, request):
+        """
+        Производится проверка введеных данных
+        Подсчет неудачных попытко входа и блокировка по ip адресу
+        После авторизации происходит отправка сообщения на электронную почту пользователя
+        """
         form = self.form_model(request.POST)
         context = {
         'form': form,
@@ -56,12 +69,10 @@ class LoginUserMixin:
             if obj.attempts == 3 or obj.attempts == 6:
                 messages.add_message(request, messages.ERROR, 'Попытки входа ограничены на 15 минут')
                 context['has_error']=True
-
             elif obj.attempts == 9:
                 messages.add_message(request, messages.ERROR, 'Попытки входа ограничены на 24 часа')
                 context['has_error']=True
             return render(request, self.template, status=401, context=context)
-
         elif obj.status is True and obj.time_unblock < timezone.now():
             obj.status = False
             obj.save()
@@ -121,13 +132,13 @@ class LoginUserMixin:
                 else:
                     return redirect(reverse(self.redirect_url))
 
-
-
         return render(request, self.template, context=context)
 
-# Регистрация (создание) пользователя
 
 class CreateUserMixin:
+    """
+    Процесс регистрации пользователя и отправка сообщения на электронную почту для активации аккаунта
+    """
     form_model = None
     template = None
     redirect_url = None
@@ -135,8 +146,14 @@ class CreateUserMixin:
 
     def get(self, request):
         form = self.form_model()
+
+        context = {
+        'form': form,
+        'public_key': settings.RECAPTCHA_PUBLIC_KEY,
+        }
+
         if not request.user.is_authenticated:
-            return render(request, self.template, context={'form': form})
+            return render(request, self.template, context=context)
         else:
             return redirect(reverse(self.redirect_url_is_authenticated))
 
@@ -212,12 +229,14 @@ class CreateUserMixin:
 
             messages.add_message(request, messages.SUCCESS, 'Подтвердите ваш электронный адрес')
             return redirect(reverse(self.redirect_url))
+
         return render(request, self.template, context=context)
 
 
-
-# Активаця пользователя
 class ActivateUser:
+    """
+    Проверка отправленного токена на электронную почту и активация аккаунта
+    """
     template = None
     redirect_url = None
 
@@ -236,8 +255,10 @@ class ActivateUser:
         return render(request, self.template, status=401)
 
 
-# Профиль пользователя
 class UserProfileMixin:
+    """
+    Профиль пользователя с отображением все его записей в блоге
+    """
     model = None
     template = None
 
@@ -247,8 +268,10 @@ class UserProfileMixin:
         return render(request, self.template, context={'order_lists': order_lists})
 
 
-# Редактирование профиля
 class UserProfileUpdateMixin:
+    """
+    Обновление информации в профиле пользователя
+    """
     template = None
     redirect_url = None
     form_model = None
@@ -280,9 +303,10 @@ class UserProfileUpdateMixin:
         return render(request, self.template, context=context)
 
 
-# Смена пароля
-
 class ChangeUserPasswordMixin:
+    """
+    Смена пароля пользователя
+    """
     template = None
     redirect_url = None
     form_model = None
@@ -322,4 +346,5 @@ class ChangeUserPasswordMixin:
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect(reverse(self.redirect_url))
+
         return render(request, self.template, context=context)

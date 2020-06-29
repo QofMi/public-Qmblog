@@ -6,54 +6,71 @@ from .models import Post
 from .utils import *
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.paginator import Paginator
 
 
-# Create your views here.
-
-# Список постов
-class posts_list(ObjectListMixin, View):
+class PostsList(ObjectListMixin, View):
+    """
+    Список постов
+    """
     model = Post
     template = 'blog/index.html'
     page_count = 12
     page_name = 'page_blog'
 
-# О Нас
+
 def about(request):
+    """
+    Рендер страницы "О проекте"
+    """
     return render(request, 'blog/about.html', context={'page_about': True})
 
-# Создание постов
-class post_create(LoginRequiredMixin, PermissionRequiredMixin, ObjectCreateMixin, View):
+
+class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, ObjectCreateMixin, View):
+    """
+    Создание поста
+    """
     form_model = PostForm
     template = 'blog/post_create_form.html'
-    # raise_exception = True
     permission_required = 'blog.add_post'
 
-# Редактирование постов
-class post_update(LoginRequiredMixin, PermissionRequiredMixin, ObjectUpdateMixin, View):
+
+class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, ObjectUpdateMixin, View):
+    """
+    Обновление поста
+    """
     model = Post
     form_model = PostForm
     template = 'blog/post_update_form.html'
-    # raise_exception = True
     permission_required = 'blog.change_post'
 
-# Удаление постов
-class post_delete(LoginRequiredMixin, PermissionRequiredMixin, ObjectDeleteMixin, View):
+
+class PostDelete(LoginRequiredMixin, PermissionRequiredMixin, ObjectDeleteMixin, View):
+    """
+    Удаоение поста
+    """
     model = Post
     template = 'blog/post_update_form.html'
     redirect_url = 'posts_list_url'
-    # raise_exception = True
     permission_required = 'blog.delete_post'
 
-# Просмотр поста
-class post_detail(ObjectDetailMixin, View):
+
+class PostDetail(ObjectDetailMixin, View):
+    """
+    Детали поста
+    """
     model = Post
     template = 'blog/post_detail.html'
 
-# 404
+
 def view_404(request, exception):
+    """
+    Рендер страницы кода ошиибки 404
+    """
     return render(request, 'errs/404.html')
 
-# 403
+
 def view_403(request, exception):
+    """
+    Рендер страницы кода ошибки 403
+    """
     return render(request, 'errs/403.html')

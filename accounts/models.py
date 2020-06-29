@@ -1,8 +1,10 @@
 from django.db import models
 
-# Create your models here.
 
 class TemporaryBanIp(models.Model):
+    """
+    Модель временно заблокированных ip адресов при неудачных попытках аутентификации
+    """
     ip_address = models.GenericIPAddressField("IP адрес")
     attempts = models.IntegerField("Неудачных попыток", default=0)
     time_unblock = models.DateTimeField("Время разблокировки", blank=True)
