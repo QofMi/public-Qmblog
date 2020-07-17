@@ -2,6 +2,12 @@ from django.conf import settings
 from django.contrib import messages
 import requests
 
+USER_DEVICE = [
+"Windows NT", "Windows Phone", "Windows",
+"iPhone", "iPad", "Macintosh", "Mac OS",
+"Android",
+"Linux",]
+
 
 # Проверка капчи
 def check_recaptcha(function):
@@ -47,18 +53,8 @@ def get_user_agent(request):
     Получение user agent'a пользователя и фильтрация полученных данных
     """
     user_agent = request.META.get('HTTP_USER_AGENT')
-    if 'Windows NT' in user_agent:
-        user_agent = 'Windows'
-    elif 'Linux' and 'Android' in user_agent:
-        user_agent = 'Android'
-    elif 'Linux' in user_agent:
-        user_agent = 'Linux'
-    elif 'iPhone' in user_agent:
-        user_agent = 'iPhone'
-    elif 'iPad' in user_agent:
-        user_agent = 'iPad'
-    elif 'Macintosh' and 'Mac OS' in user_agent:
-        user_agent = 'Mac'
-    else:
-        user_agent = 'None'
-    return user_agent
+    length = len(USER_DEVICE)
+    for i in range(0, length):
+        if USER_DEVICE[i] in user_agent:
+            user_agent = USER_DEVICE[i]
+            return user_agent
