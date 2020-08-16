@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View
 from django.urls import reverse
 from .models import Post
-from .utils import *
+from .services import *
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 

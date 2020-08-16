@@ -3,13 +3,13 @@ from io import BytesIO
 from PIL import Image
 from django.core.files import File
 
-# Импорт для генерирование имени файла
+# Импорт для генерирования имени файла
 from hashlib import md5
 from os import path as op
 from time import time
 
 
-def compress(img):
+def _compressing_image(img):
     """
     Сжатиие изображения
     """

@@ -1,19 +1,19 @@
 from django.urls import path
 from .views import *
-from .decorators import check_recaptcha
+from .utils import _check_recaptcha
 
 # Сброс пароля
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Логин
-    path('signin/', check_recaptcha(SignIn.as_view()), name='sign_in_url'),
+    path('signin/', _check_recaptcha(SignIn.as_view()), name='sign_in_url'),
 
     # Регистрация
-    path('signup/', check_recaptcha(SignUp.as_view()), name='sign_up_url'),
+    path('signup/', _check_recaptcha(SignUp.as_view()), name='sign_up_url'),
 
     # Политика конфиденцииальности
-    path('policy/', policy, name='policy_url'),
+    path('policy/', privacy_policy, name='policy_url'),
 
     # Активация/Подтверждение почты
     path('activate/<uidb64>/<token>', ActivateUserAccounts.as_view(), name='activate'),

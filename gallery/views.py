@@ -1,6 +1,6 @@
 from .models import Gallery
 from django.views.generic import View
-from blog.utils import ObjectListMixin
+from blog.services import ObjectListMixin
 
 
 class GalleryList(ObjectListMixin, View):

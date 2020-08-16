@@ -46,16 +46,19 @@ header {
 .blog {
   background: url(../img/blog.jpg) no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .home {
   background: url(../img/home.jpg) no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .about {
   background: url(../img/about.jpg) no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 .menu_container {
@@ -126,6 +129,7 @@ header {
   left: 50%; margin-left: -20px;
   width: 40px;
   height: 4px;
+  border-radius: 5px;
   background-color: #ffffff;
   transition: .4s cubic-bezier(.55,0,.1,1);
 }

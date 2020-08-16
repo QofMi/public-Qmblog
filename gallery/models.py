@@ -1,6 +1,6 @@
 from django.db import models
-from blog.images import compress, upload_to_gallery
-from blog.models import gen_slug
+from blog.images import _compressing_image, upload_to_gallery
+from blog.utils import _gen_slug
 
 
 class Gallery(models.Model):
@@ -19,9 +19,9 @@ class Gallery(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = gen_slug(self.title)
+            self.slug = _gen_slug(self.title)
         if self.img:
-            self.img = compress(self.img)
+            self.img = _compressing_image(self.img)
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
