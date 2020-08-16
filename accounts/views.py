@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import *
-from .utils import *
+from .services import *
 from django.views.generic import View
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -36,7 +36,7 @@ class SignUp(CreateUserMixin, View):
     redirect_url_is_authenticated = 'user_profile_url'
 
 
-def policy(request):
+def privacy_policy(request):
     """
     Политика конфиденциальности
     """
