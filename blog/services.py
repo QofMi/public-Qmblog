@@ -77,8 +77,8 @@ class ObjectCreateMixin:
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.user = request.user
-            # if new_object.img:
-            #     new_object.img = _compressing_image(new_object.img)
+            if new_object.img:
+                new_object.img = _compressing_image(new_object.img)
             new_object.save()
             return redirect(new_object)
         return render(request, self.template, context={'form': form})
