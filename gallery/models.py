@@ -20,17 +20,7 @@ class Gallery(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = _gen_slug(self.title)
-        if self.img:
-            self.img = _compressing_image(self.img)
         super().save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        try:
-            object = Gallery.objects.get(id=self.id)
-            object.img.delete()
-        except (Gallery.DoesNotExist, ValueError):
-            pass
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.title

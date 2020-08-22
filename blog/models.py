@@ -34,16 +34,7 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = _gen_slug(self.title)
-
         super().save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        try:
-            object = Post.objects.get(id=self.id)
-            object.img.delete()
-        except (Post.DoesNotExist, ValueError):
-            pass
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.title

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from .models import *
 from gallery.models import *
 from django.core.exceptions import PermissionDenied
-from .images import _compressing_image
 from django.core.paginator import Paginator
 
 
@@ -47,7 +46,7 @@ class ObjectListMixin:
 
 class ObjectDetailMixin:
     """
-    Детали поста
+    Детали объекта
     """
     model = None
     template = None
@@ -63,7 +62,7 @@ class ObjectDetailMixin:
 
 class ObjectCreateMixin:
     """
-    Создание поста
+    Создание объекта
     """
     form_model = None
     template = None
@@ -77,8 +76,6 @@ class ObjectCreateMixin:
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.user = request.user
-            if new_object.img:
-                new_object.img = _compressing_image(new_object.img)
             new_object.save()
             return redirect(new_object)
         return render(request, self.template, context={'form': form})
@@ -86,7 +83,7 @@ class ObjectCreateMixin:
 
 class ObjectUpdateMixin:
     """
-    Обновление поста
+    Обновление объекта
     """
     model = None
     template = None
@@ -109,13 +106,6 @@ class ObjectUpdateMixin:
 
         if form.is_valid():
             new_object = form.save(commit=False)
-            try:
-                objects = Post.objects.get(slug__iexact=slug)
-                if new_object.img != objects.img:
-                    objects.img.delete()
-                    new_object.img = _compressing_image(new_object.img)
-            except:
-                pass
             new_object.save()
             return redirect(new_object)
 
@@ -124,7 +114,7 @@ class ObjectUpdateMixin:
 
 class ObjectDeleteMixin:
     """
-    Удаление поста
+    Удаление объекта
     """
     model = None
     template = None
