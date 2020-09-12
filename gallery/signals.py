@@ -1,7 +1,7 @@
 from .models import Gallery
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, pre_delete
-from blog.signals import _compressing_image_signal, _delete_image_signal
+from blog.signals_services import _compressing_image_signal, _delete_image_signal
 
 
 @receiver(pre_save, sender=Gallery)
