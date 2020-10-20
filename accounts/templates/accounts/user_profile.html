@@ -26,6 +26,16 @@
       <h4>{% firstof user.first_name %} {% firstof user.last_name %}</h4>
     </div>
     <div class="settings_button">
+
+      {% if request.user.is_authenticated and request.user.is_staff %}
+        <a href="{% url 'admin:index' %}">
+          <div class="settings_button_edit settings_button_reset_password">
+            <i class="fa fa-terminal" aria-hidden="true"></i>
+            <h5>Админка</h5>
+          </div>
+        </a>
+        {% endif %}
+
       <a href="{% url 'user_profile_update_url' %}">
         <div class="settings_button_edit">
           <i class="fa fa-cog" aria-hidden="true"></i>

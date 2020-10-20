@@ -4,8 +4,6 @@ from django.views.generic import View
 from django.urls import reverse
 from .models import Post
 from .services import *
-from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 class PostsList(ObjectListMixin, View):
@@ -23,35 +21,6 @@ def about(request):
     Рендер страницы "О проекте"
     """
     return render(request, 'blog/about.html', context={'page_about': True})
-
-
-class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, ObjectCreateMixin, View):
-    """
-    Создание поста
-    """
-    form_model = PostForm
-    template = 'blog/post_create_form.html'
-    permission_required = 'blog.add_post'
-
-
-class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, ObjectUpdateMixin, View):
-    """
-    Обновление поста
-    """
-    model = Post
-    form_model = PostForm
-    template = 'blog/post_update_form.html'
-    permission_required = 'blog.change_post'
-
-
-class PostDelete(LoginRequiredMixin, PermissionRequiredMixin, ObjectDeleteMixin, View):
-    """
-    Удаоение поста
-    """
-    model = Post
-    template = 'blog/post_update_form.html'
-    redirect_url = 'posts_list_url'
-    permission_required = 'blog.delete_post'
 
 
 class PostDetail(ObjectDetailMixin, View):

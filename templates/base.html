@@ -30,9 +30,6 @@
     </title>
   </head>
   <body>
-    {% if request.user.is_authenticated and request.user.is_staff %}
-    {% include 'blog/includes/admin_panel.html' %}
-    {% endif %}
     <header class="blog">
       <div class="menu_container">
         <div class="menu">

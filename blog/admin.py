@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.utils.html import mark_safe
 
-from django.db.models.signals import pre_delete, pre_save
-from django.dispatch.dispatcher import receiver
 from django.contrib.auth.admin import UserAdmin
 from django.core.exceptions import PermissionDenied
 
@@ -21,61 +19,63 @@ class AdminPost(admin.ModelAdmin):
     """
     list_display = ['title', 'user', 'date_pub', 'get_img']
     exclude = ['slug']
+    readonly_fields = ('get_img', 'user', 'date_pub',)
+
     def get_img(self, obj):
+        """
+        Отображение ихображения
+        """
         return mark_safe(f'<img src={obj.img.url} width="200" height="auto">')
 
-    def change_view(self, request, *args, **kwargs):
-        """
-        Разграничение отображения контента модели Post для пользователей в определенной группе
-        """
-        if request.user.is_superuser:
-            self.readonly_fields = ('get_img', 'user', 'date_pub',)
-            return super(AdminPost, self).change_view(request, *args, **kwargs)
-
-        elif request.user.groups.filter(name="Администраторы").exists():
-            self.readonly_fields = ('get_img', 'user', 'date_pub',)
-            return super(AdminPost, self).change_view(request, *args, **kwargs)
-        else:
-            self.readonly_fields =  ('title', 'img', 'body', 'get_img', 'user', 'date_pub',)
-            return super(AdminPost, self).change_view(request, *args, **kwargs)
-
     get_img.short_description = 'Изображение'
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Ограничение доступа к объектам модели Post
+        """
+        if obj is None:
+            return super(AdminPost, self).get_form(request, obj, **kwargs)
+
+        if request.user.groups.filter(name="Модераторы").exists():
+            if obj.user != request.user:
+                raise PermissionDenied
+        return super(AdminPost, self).get_form(request, obj, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Добавление пользователя при сохранении модели Post
+        """
+        if obj.user is None:
+            obj.user = request.user
+        return super(AdminPost, self).save_model(request, obj, form, change)
+
+    def delete_queryset(self, request, queryset):
+        """
+        Запрет на удаление объектов модели Post
+        """
+        if request.user.groups.filter(name="Модераторы").exists():
+            raise PermissionDenied
+        return super(AdminPost, self).delete_model(request, queryset)
 
 
 class AdminUser(UserAdmin):
     """
-    Разграничение отображения контента для персонала и суперпользователя
+    Регистраци пользовательской модели User в административной части сайта
     """
-    staff_fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        (('Персональная информация'), {'fields': ('first_name', 'last_name', 'email')}),
-        (('Права доступа'), {
-            'fields': ('is_staff','groups',),
-        }),
-        (('Важные даты'), {'fields': ('last_login', 'date_joined')}),
-    )
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'last_login',)
+
     def change_view(self, request, *args, **kwargs):
+        """
+        Разграничение отображения контента для персонала и суперпользователя
+        """
         if not request.user.is_superuser:
-            try:
-                self.fieldsets = self.staff_fieldsets
-                self.readonly_fields = ('username', 'email', 'first_name', 'last_name', 'last_login', 'date_joined', 'is_staff')
-                response = super(AdminUser, self).change_view(request, *args, **kwargs)
-            finally:
-                self.fieldsets = UserAdmin.fieldsets
-                self.readonly_fields = ('last_login', 'date_joined',)
-            return response
-        else:
-            return super(AdminUser, self).change_view(request, *args, **kwargs)
+            self.readonly_fields = ('username', 'first_name', 'last_name', 'email', 'is_active', 'is_staff', 'is_superuser', 'user_permissions', 'last_login', 'date_joined')
+        return super(AdminUser, self).change_view(request, *args, **kwargs)
 
     def get_form(self, request, obj=None, **kwargs):
         """
         Включение статуса персонала при присваивании пользователю определенной группы
         """
-        defaults = {}
-        if obj is None:
-            defaults['form'] = self.add_form
-        defaults.update(kwargs)
         if obj.is_superuser:
             obj.is_staff = True
             obj.save()
@@ -85,17 +85,8 @@ class AdminUser(UserAdmin):
         else:
             obj.is_staff = False
             obj.save()
-        return super().get_form(request, obj, **defaults)
+        return super(AdminUser, self).get_form(request, obj, **kwargs)
 
 
 admin.site.unregister(User)
 admin.site.register(User, AdminUser)
-
-
-@receiver(pre_delete, sender=User)
-def delete_user(sender, instance, **kwargs):
-    """
-    Запрет на удаление суперпользователя
-    """
-    if instance.is_superuser:
-        raise PermissionDenied
