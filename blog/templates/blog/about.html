@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main_template.html' %}
 {% load static %}
 
 {% block meta_description %}
@@ -21,12 +21,18 @@ https://qmblog.ru/blog/about
 О проекте qmblog
 {% endblock %}
 
-{% block header_class_image %}
-about
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
 {% endblock %}
 
-{% block h1 %}
-О проекте
+
+{% block Header %}
+{% include 'includes/header.html' %}
+{% endblock %}
+
+
+{% block content_title %}
+О Проекте
 {% endblock %}
 
 
@@ -38,10 +44,11 @@ about
   <h2>Qmblog.ru - это галерея моих художественных работ,</h2>
   <h2>а также, я явлюясь разработчиком данного web-сайта</h2>
 
-  <h1>Контакты</h1>
-  <h2>Электронный адрес - qofmi@qmblog.ru</h2>
-
-  <img class="QM" src="{% static 'img/QM.png' %}" alt="">
 </div>
 
+{% endblock %}
+
+
+{% block js %}
+{% include 'includes/nav_js.html' %}
 {% endblock %}

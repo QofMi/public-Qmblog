@@ -1,50 +1,93 @@
-{% extends 'accounts/signin_template.html' %}
+{% extends 'main_template.html' %}
+
+
 {% block meta_description %}
-Регистрация на сайте qmblog.ru, это даст ровно ничего, но можно зарегистрироваться.
+Регистрация на сайте qmblog.ru
 {% endblock %}
+
 
 {% block meta_title %}
 Регистрация
 {% endblock %}
 
+
 {% block meta_url %}
 https://qmblog.ru/accounts/signup/
 {% endblock %}
+
 
 {% block title %}
   Регистрация
 {% endblock %}
 
+
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
+{% endblock %}
+
+
 {% block content %}
-<form class="login_form" action="{% url 'sign_up_url' %}" method="post">
-  {% csrf_token %}
-  <h1>Регистрация</h1>
+        <div class="signin_container">
+          <div class="signin_wrapper">
+            <form class="signin_form" action="{% url 'sign_up_url' %}" method="post">
+              {% csrf_token %}
+              <div class="signin_title">
+                <h1>Регистрация</h1>
+              </div>
 
-  {% include 'accounts/includes/alert.html' %}
+              <div class="signin_elements">
+                {% include 'accounts/includes/alert.html' %}
+              </div>
 
-  <div class="txtb">
-  <!-- -->
-    <input type="text" name="username" value="" maxlength="50">
-    <span data-placeholder="Имя пользователя"></span>
-  </div>
+              <div class="signin_elements">
+                <input class="signin__input" id="signup_username" required='' type='text' name="username">
+                <label class="signin__label" alt='Имя пользователя' placeholder='Имя пользователя'></label>
 
-  <div class="txtb">
-    <input type="email" name="email" value="" maxlength="150">
-    <span data-placeholder="Адрес эл. почты"></span>
-  </div>
+                <div class="alert alert-danger" id="signup_alert" style="display:none">
+                  <p></p>
+                </div>
 
-  <div class="txtb">
-    <input type="password" name="password1" value="" maxlength="50">
-    <span data-placeholder="Пароль"></span>
-  </div>
+              </div>
 
-  <div class="txtb">
-    <input type="password" name="password2" value="" maxlength="50">
-    <span data-placeholder="Подтвердите пароль"></span>
-  </div>
-  {{ form.checkbox }} Я принимаю условия <a href="{% url 'policy_url' %}">Политики конфиденциальности</a>.
-  <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
-  <input type="submit" class="logbtn" value="Создать аккаунт">
-</form>
+              <div class="signin_elements">
+                <input class="signin__input" required='' type='email' name="email">
+                <label class="signin__label" alt='Эл. почта' placeholder='Эл. почта'></label>
+              </div>
 
+              <div class="signin_elements">
+                <input class="signin__input" required='' type='password' name="password1">
+                <label class="signin__label" alt='Пароль' placeholder='Пароль'></label>
+              </div>
+
+              <div class="signin_elements">
+                <input class="signin__input" required='' type='password' name="password2">
+                <label class="signin__label" alt='Подтвердить' placeholder='Подтвердить'></label>
+              </div>
+
+              <!-- ЧЕКБОКС ПОЛИТИКИ -->
+              <div class="signin_elements">
+                <input class="signin__checkbox" id="signin__checkbox" type="checkbox" name="checkbox" value="">
+                <label for="signin__checkbox"><a href="{% url 'policy_url' %}">Я принимаю условия Политики конфиденциальности</a></label>
+              </div>
+
+              <!-- РЕКАПЧА -->
+              <div class="signin_elements">
+                <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
+              </div>
+
+              <!-- КНОПКА -->
+              <div class="signin_elements signin_button">
+                <button class="signin_button_template" type="submit" name="button">Создать аккаунт</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+{% endblock %}
+
+
+{% block js %}
+{% include 'accounts/includes/recaptcha_js.html' %}
+{% include 'accounts/includes/validate_js.html' %}
+{% include 'includes/nav_js.html' %}
 {% endblock %}

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+  let usernameField = document.querySelector("#signup_username");
+  let feedBackMessage = document.querySelector("#signup_alert")
+
+  function usernameValid(e) {
+    usernameValue = e.target.value;
+    feedBackMessage.style.display = 'none';
+
+    if (usernameValue.length > 0) {
+      fetch("https://qmblog.ru/accounts/api/validate-username/", {
+        body: JSON.stringify({'username': usernameValue}),
+        method: "POST",
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        if (data.username_error) {
+          feedBackMessage.style.display = 'block';
+          feedBackMessage.innerText = data.username_error;
+        }
+
+      })
+    }
+  };
+
+  usernameField.addEventListener('keyup', usernameValid)
+</script>

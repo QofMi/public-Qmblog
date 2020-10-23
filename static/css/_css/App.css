@@ -1,0 +1,140 @@
+:root {
+  --main-color-app: #d3597e;
+  --main--h1-color: #353535;
+  --main--p-color: #575757;
+  --body-background-color: #fff;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+html{
+  position: relative;
+  overflow-x: hidden;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  display: block;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  font-family: 'PT Sans', sans-serif;
+  background: var(--body-background-color);
+}
+
+.App {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+/* СКРОЛ */
+
+::-webkit-scrollbar-track
+{
+	background-color: transparent;
+}
+
+::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: var(--main-color-app);
+  border-radius: 10px;
+}
+
+/* ЗАГОЛОВОК КОНТЕНТА */
+.content_title_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.content_title_wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  flex-direction: column;
+}
+
+.content_title {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.content_title__h1 {
+  display: inline-block;
+  text-align: center;
+  padding: 7px 8px 4px 8px;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: var(--main--h1-color);
+  background: var(--body-background-color);
+  z-index: 1;
+}
+
+.content_title__lines {
+  position: absolute;
+  margin-top: 25px;
+  width: 80%;
+  border-bottom: 4px solid var(--main-color-app);
+  border-radius: 4px;
+}
+
+.footer {
+  height: 60px;
+}
+
+@media screen and (max-width: 1200px){
+
+}
+
+@media screen and (max-width: 800px){
+
+}
+
+@media screen and (max-width: 600px){
+
+}
+
+@media screen and (max-width: 450px){
+
+  .content_title__h1 {
+    font-size: 1.5rem;
+  }
+
+  .content_title__lines {
+    width: 100%;
+    margin-top: 20px;
+    border-bottom: 4px solid var(--main-color-app);
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+}

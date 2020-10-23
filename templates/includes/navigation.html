@@ -1,0 +1,45 @@
+<div class="navigation">
+  <div class="navigation_wrapper">
+    <div class="qmblog_logo">
+      <a href="{% url 'home_url' %}"><h1>QMBLOG</h1></a>
+    </div>
+    <div class="drop_menu_container">
+      <nav class="drop_menu">
+        <div class="main_nav_menu">
+          <a class="drop_menu_link {% if page_home %}current_page_active{% endif %}" href="{% url 'home_url' %}">Галерея</a>
+          <a class="drop_menu_link {% if page_blog %}current_page_active{% endif %}" href="{% url 'posts_list_url' %}">Блог</a>
+          <a class="drop_menu_link {% if page_about %}current_page_active{% endif %}" href="{% url 'about_url' %}">О проекте</a>
+        </div>
+        <div class="auth_nav_menu">
+          {% if request.user.is_authenticated %}
+          <a class="drop_menu_link" href="{% url 'user_profile_url' %}">{% firstof user.get_username %}</a>
+          {% else %}
+          <a class="drop_menu_link" href="{% url 'sign_in_url' %}">Вход</a>
+          <a class="drop_menu_link" href="{% url 'sign_up_url' %}">Регистрация</a>
+          {% endif %}
+          <a class="drop_menu_link" href="{% url 'policy_url' %}">Политика конф</a>
+        </div>
+        <div class="contacts_nav_menu">
+          <a target="_blank" href="https://vk.com/qofmi">
+            <div class="contacts_nav_menu_vk">
+              <i class="fa fa-vk" aria-hidden="true"></i>
+            </div>
+          </a>
+          <a target="_blank" href="https://twitter.com/QueenOfMirana">
+            <div class="contacts_nav_menu_twitter">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </div>
+          </a>
+          <a target="_blank" href="https://github.com/QofMi?tab=repositories">
+            <div class="contacts_nav_menu_git">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </div>
+          </a>
+        </div>
+      </nav>
+        <div class="drop_menu_button">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>

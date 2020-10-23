@@ -1,0 +1,17 @@
+<script type="text/javascript">
+  let dropMenuButtonClass = document.querySelector(".drop_menu_button");
+  let dropMenuClass = document.querySelector(".drop_menu");
+  let dropMenuLinkClass = document.querySelectorAll(".drop_menu_link");
+  let hiddenContentClass = document.querySelector(".content");
+
+  function dropMenuActive(e) {
+    e.preventDefault;
+    dropMenuButtonClass.classList.toggle("drop_menu_button_active");
+    dropMenuClass.classList.toggle("drop_menu_active");
+    for(i = 0; i < dropMenuLinkClass.length; i++) {
+        dropMenuLinkClass[i].classList.toggle("drop_menu_link_active");
+    };
+    hiddenContentClass.classList.toggle("hidden");
+  };
+  dropMenuButtonClass.addEventListener('click', dropMenuActive);
+</script>

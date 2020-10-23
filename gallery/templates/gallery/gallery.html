@@ -1,0 +1,52 @@
+{% extends 'main_template.html' %}
+
+
+{% block meta_description %}
+Галерея художественных работ Шипачева Ивана
+{% endblock %}
+
+
+{% block meta_title %}
+QMBLOG - Галерея художественных работ
+{% endblock %}
+
+
+{% block meta_url %}
+https://qmblog.ru/
+{% endblock %}
+
+
+{% block meta_keywords %}
+Галерея qmblog, qmblog, галерея, галерея изображений, изображения, Иван Шипачев, QofMi
+{% endblock %}
+
+
+{% block title %}
+QMBLOG - Галерея художественных работ
+{% endblock %}
+
+
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
+{% endblock %}
+
+
+{% block Header %}
+{% include 'includes/header.html' %}
+{% endblock %}
+
+
+{% block content_title %}
+Галерея
+{% endblock %}
+
+
+{% block content %}
+{% include 'gallery/includes/gallery_list.html' %}
+{% endblock %}
+
+
+{% block js %}
+{% include 'includes/nav_js.html' %}
+{% include 'gallery/includes/list_js.html' %}
+{% endblock %}

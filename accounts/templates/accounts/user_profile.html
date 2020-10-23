@@ -1,87 +1,110 @@
-{% extends 'blog/base_blog.html' %}
+{% extends 'main_template.html' %}
+
 
 {% block meta_title %}
 {% firstof user.username %}
 {% endblock %}
 
+
 {% block meta_description %}
 Профиль пользователя {% firstof user.username %}
 {% endblock %}
+
 
 {% block title %}
 {% firstof user.username %}
 {% endblock %}
 
-{% block h1 %}
-Привет {% firstof user.get_short_name user.get_username %}
+
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
 {% endblock %}
 
 
+{% block Header %}
+{% include 'includes/header.html' %}
+{% endblock %}
+
+
+{% block content_title %}
+Привет {% firstof user.get_short_name user.get_username %}
+{% endblock %}
+
 {% block content %}
 <div class="user_container">
-  <div class="user_profile">
-    <div class="user_info">
-      <h1>{% firstof user.username %}</h1>
-      <h3>{% firstof user.email %}</h3>
-      <h4>{% firstof user.first_name %} {% firstof user.last_name %}</h4>
-    </div>
-    <div class="settings_button">
+  <div class="user_wrapper">
+    <div class="user_content">
+      <div class="user_profile">
 
-      {% if request.user.is_authenticated and request.user.is_staff %}
-        <a href="{% url 'admin:index' %}">
-          <div class="settings_button_edit settings_button_reset_password">
-            <i class="fa fa-terminal" aria-hidden="true"></i>
-            <h5>Админка</h5>
-          </div>
-        </a>
-        {% endif %}
+        <div class="user_info">
+          <h1>{% firstof user.username %}</h1>
+          <h3>{% firstof user.email %}</h3>
+          <h4>{% firstof user.first_name %} {% firstof user.last_name %}</h4>
+        </div>
 
-      <a href="{% url 'user_profile_update_url' %}">
-        <div class="settings_button_edit">
-          <i class="fa fa-cog" aria-hidden="true"></i>
-          <h5>Настройки</h5>
-        </div>
-      </a>
-      <a href="{% url 'user_change_password_url' %}">
-        <div class="settings_button_edit settings_button_reset_password">
-          <span class="fa-passwd-reset fa-stack">
-            <i class="fa fa-undo fa-stack-2x"></i>
-            <i class="fa fa-lock fa-stack-1x"></i>
-          </span>
-          <h5>Сменить</h5>
-          <h5>пароль</h5>
-        </div>
-      </a>
-      <a href="{% url 'logout_url' %}">
-        <div class="settings_button_edit settings_button_logout">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
-          <h5>Выход</h5>
-        </div>
-      </a>
-    </div>
-  </div>
-  {% if order_lists %}
-  <div class="user_posts">
-    <h2>Ваши статьи:</h2>
+        <div class="settings_button">
 
-    <div class="user_post_container">
-      <div class="user_post_card">
-        <h4>Заголовок</h4>
-        <h4>Дата публикации</h4>
-        <h4>Изображение</h4>
+          {% if request.user.is_authenticated and request.user.is_staff %}
+          <a href="{% url 'admin:index' %}">
+            <div class="settings_button_edit settings_button_reset_password">
+              <i class="fa fa-terminal" aria-hidden="true"></i>
+              <h5>Админка</h5>
+            </div>
+          </a>
+          {% endif %}
+
+          <a href="{% url 'user_profile_update_url' %}">
+            <div class="settings_button_edit">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <h5>Настройки</h5>
+            </div>
+          </a>
+          <a href="{% url 'user_change_password_url' %}">
+            <div class="settings_button_edit settings_button_reset_password">
+              <span class="fa-passwd-reset fa-stack">
+                <i class="fa fa-undo fa-stack-2x"></i>
+                <i class="fa fa-lock fa-stack-1x"></i>
+              </span>
+              <h5>Сменить</h5>
+              <h5>пароль</h5>
+            </div>
+          </a>
+          <a href="{% url 'logout_url' %}">
+            <div class="settings_button_edit settings_button_logout">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <h5>Выход</h5>
+            </div>
+          </a>
+        </div>
       </div>
+      {% if order_lists %}
+      <div class="user_posts">
+        <h2>Ваши статьи:</h2>
 
-      {% for order_list in order_lists %}
-      <a id="user_post_card" class="user_post_card" href="{{order_list.get_absolute_url}}">
-        <h4>{{order_list.title|truncatewords:4}}</h4>
-        <h4>{{order_list.date_pub}}</h4>
-        {% if order_list.img %}
-        <img src="{{ order_list.img.url }}" alt=""  class="img_detail">
-        {% endif %}
-      </a>
-      {% endfor %}
+        <div class="user_post_container">
+          <div class="user_post_card">
+            <h4>Заголовок</h4>
+            <h4>Дата публикации</h4>
+            <h4>Изображение</h4>
+          </div>
+
+          {% for order_list in order_lists %}
+          <a id="user_post_card" class="user_post_card" href="{{order_list.get_absolute_url}}">
+            <h4>{{order_list.title|truncatewords:4}}</h4>
+            <h4>{{order_list.date_pub}}</h4>
+            {% if order_list.img %}
+            <img src="{{ order_list.img.url }}" alt=""  class="img_detail">
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
-  {% endif %}
 </div>
+{% endblock %}
+
+{% block js %}
+{% include 'includes/nav_js.html' %}
 {% endblock %}

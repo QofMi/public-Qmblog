@@ -1,43 +1,84 @@
-{% extends 'blog/base_blog.html' %}
+{% extends 'main_template.html' %}
+
+
+{% block meta_title %}
+{% firstof user.username %}
+{% endblock %}
+
+
+{% block meta_description %}
+Профиль пользователя {% firstof user.username %}
+{% endblock %}
+
 
 {% block title %}
 {% firstof user.username %}
 {% endblock %}
 
-{% block h1 %}
-Привет {% firstof user.get_short_name user.get_username %}
+
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
 {% endblock %}
 
-{% block h3 %}
+
+{% block Header %}
+{% include 'includes/header.html' %}
+{% endblock %}
+
+
+{% block content_title %}
 Редактор профиля
 {% endblock %}
 
-
 {% block content %}
-<form class="user_edit_form" action="{% url 'user_profile_update_url' %}" method="post">
-  {% csrf_token %}
-  {% include 'accounts/includes/alert.html' %}
-  <div class="user_edit_info">
-    <div class="txtb">
-      {{ form.username }}
-    </div>
+<div class="user_container">
+  <div class="user_wrapper">
+    <form class="signin_form" action="{% url 'user_profile_update_url' %}" method="post">
+      {% csrf_token %}
 
-    <div class="txtb">
-      {{ form.email }}
-    </div>
+      <div class="signin_elements">
+        {% include 'accounts/includes/alert.html' %}
+      </div>
 
-    <div class="txtb">
-      {{ form.first_name }}
-    </div>
+      <div class="signin_elements">
+        {{ form.username }}
+        <label class="signin__label" alt='Имя пользователя' placeholder='Имя пользователя'></label>
 
-    <div class="txtb">
-      {{ form.last_name }}
-    </div>
-    <div class="stbtn">
-      <input type="submit" class="save_user_btn" value="Сохранить">
-      <a href="{% url 'user_profile_url' %}"><input type="button" class="logoutbtn" value="Отмена"></a>
-    </div>
+        <div class="alert alert-danger" id="signup_alert" style="display:none">
+          <p></p>
+        </div>
+
+      </div>
+
+      <div class="signin_elements">
+        {{ form.email }}
+        <label class="signin__label" alt='Адрес эл. почты' placeholder='Адрес эл. почты'></label>
+      </div>
+
+      <div class="signin_elements">
+        {{ form.first_name }}
+        <label class="signin__label" alt='Имя' placeholder='Имя'></label>
+      </div>
+
+      <div class="signin_elements">
+        {{ form.last_name }}
+        <label class="signin__label" alt='Фамилия' placeholder='Фамилия'></label>
+      </div>
+
+      <!-- КНОПКА -->
+      <div class="signin_elements signin_button">
+        <button class="signin_button_template" type="submit" name="button">Сохранить</button>
+      </div>
+
+      <div class="signin_elements signin_button margin-top">
+        <a href="{% url 'user_profile_url' %}">Отмена</a>
+      </div>
+    </form>
   </div>
+</div>
+{% endblock %}
 
-</form>
+{% block js %}
+{% include 'includes/nav_js.html' %}
+{% include 'accounts/includes/validate_js.html' %}
 {% endblock %}

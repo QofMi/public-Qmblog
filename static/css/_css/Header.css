@@ -1,0 +1,38 @@
+.header_wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.header_img {
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px){
+
+}
+
+@media screen and (max-width: 800px){
+
+}
+
+@media screen and (max-width: 600px){
+
+}
+
+@media screen and (max-width: 450px){
+  .header_img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+}

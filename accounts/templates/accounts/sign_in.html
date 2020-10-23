@@ -1,49 +1,81 @@
-{% extends 'accounts/signin_template.html' %}
+{% extends 'main_template.html' %}
+
 
 {% block meta_description %}
-Авторизация на сайте qmblog.ru
+Вход на сайте qmblog.ru
 {% endblock %}
+
 
 {% block meta_title %}
 Вход
 {% endblock %}
 
+
 {% block meta_url %}
 https://qmblog.ru/accounts/signin/
 {% endblock %}
+
 
 {% block title %}
   Вход
 {% endblock %}
 
+
+{% block Navigation %}
+{% include 'includes/navigation.html' %}
+{% endblock %}
+
+
 {% block content %}
-<form class="login_form" action="{% url 'sign_in_url' %}" method="post">
-  {% csrf_token %}
-  <h1>Вход</h1>
+        <div class="signin_container">
+          <div class="signin_wrapper">
+            <form class="signin_form" action="{% url 'sign_in_url' %}" method="post">
+              {% csrf_token %}
+              <div class="signin_title">
+                <h1>Вход</h1>
+              </div>
 
-  {% include 'accounts/includes/alert.html' %}
+              <div class="signin_elements">
+                {% include 'accounts/includes/alert.html' %}
+              </div>
 
-  <div class="txtb">
-    <input type="text" name="username" value="" maxlength="50">
-    <span data-placeholder="Имя пользователя"></span>
-  </div>
+              <div class="signin_elements">
+                <input class="signin__input" required='' type='text' name="username">
+                <label class="signin__label" alt='Имя пользователя' placeholder='Имя пользователя'></label>
+              </div>
 
-  <div class="txtb">
-    <input type="password" name="password" value="" maxlength="50">
-    <span data-placeholder="Пароль"></span>
-  </div>
-  <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
-  <input type="submit" class="logbtn" value="Войти">
+              <div class="signin_elements">
+                <input class="signin__input" required='' type='password' name="password">
+                <label class="signin__label" alt='Пароль' placeholder='Пароль'></label>
+              </div>
 
-  <div class="bottom_text">
-    <a href="{% url 'sign_up_url' %}">Создать аккаунт</a>
-  </div>
-  <div class="bottom_text">
-    <a href="{% url 'reset_password' %}">Забыли пароль ?</a>
-  </div>
-  {% if request.GET.next %}
-  <input type="hidden" name="next" value="{{ request.GET.next }}">
-  {% endif %}
-</form>
+              <!-- РЕКАПЧА -->
+              <div class="signin_elements">
+                <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
+              </div>
 
+              <!-- КНОПКА -->
+              <div class="signin_elements signin_button">
+                <button class="signin_button_template" type="submit" name="button">Вход</button>
+              </div>
+
+              <div class="signin_elements signin_button margin-top">
+                <a href="{% url 'sign_up_url' %}">Создать аккаунт</a>
+              </div>
+              <div class="signin_elements signin_button margin-top">
+                <a href="{% url 'reset_password' %}">Забыли пароль ?</a>
+              </div>
+              {% if request.GET.next %}
+              <input type="hidden" name="next" value="{{ request.GET.next }}">
+              {% endif %}
+
+            </form>
+          </div>
+        </div>
+{% endblock %}
+
+
+{% block js %}
+{% include 'accounts/includes/recaptcha_js.html' %}
+{% include 'includes/nav_js.html' %}
 {% endblock %}

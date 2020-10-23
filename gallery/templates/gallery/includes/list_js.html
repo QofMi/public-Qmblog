@@ -1,0 +1,24 @@
+<script type="text/javascript">
+  let viewImage = document.getElementById("gallery_view_id");
+  let closeViewButton = document.querySelector(".gallery_view_close_button");
+  let imagesList = document.querySelectorAll(".gallery__img");
+  let getImageId = document.getElementById("gallery_view__img_id");
+  let description = document.getElementById("gallery_view_description_id");
+
+  closeViewButton.onclick = () => {
+    viewImage.style.display = "none";
+  };
+
+  // viewImage.onclick = () => {
+  //   viewImage.style.display = "none";
+  // };
+
+  for (i = 0; i < imagesList.length; i++) {
+    imagesList[i].onclick = function() {
+      viewImage.style.display = "block";
+      getImageId.src = this.src;
+      getImageId.alt = this.alt;
+      description.innerHTML = this.nextElementSibling.innerHTML;
+    };
+  };
+</script>

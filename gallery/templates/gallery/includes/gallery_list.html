@@ -1,0 +1,20 @@
+<div class='gallery_container'>
+  <div class='gallery_wrapper'>
+    <div class="gallery_list">
+    {% if page.object_list %}
+      {% for gallery in page.object_list %}
+      <div class="gallery_image_container wow zoomIn" data-wow-delay = "0.25s">
+        <img src="{{ gallery.img.url }}" class="gallery__img" alt="{{gallery.title}}">
+        <div class="gallery_description">{{gallery.title}}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div id="gallery_view_id" class="gallery_view">
+      <span class="gallery_view_close_button">&times;</span>
+      <img class="gallery_view__img" id="gallery_view__img_id">
+      <div id="gallery_view_description_id"></div>
+    </div>
+    {% endif %}
+  </div>
+</div>

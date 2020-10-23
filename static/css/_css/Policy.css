@@ -1,0 +1,35 @@
+.policy_container {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.policy_wrapper {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  flex-direction: column;
+}
+
+.policy_list {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.policy_elements {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1%;
+}
+
+.policy_elements h4 {
+  margin-top: 2%;
+}
