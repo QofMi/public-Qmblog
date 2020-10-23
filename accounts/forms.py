@@ -22,12 +22,12 @@ class UserProfileUpdateForm(UserChangeForm, forms.Form):
         fields = ['username', 'email', 'first_name', 'last_name']
 
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Имя пользователя'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Имя пользователя', 'class': 'signin__input', 'id': 'signup_username', 'alt': 'Имя пользователя', 'required': ''}),
 
-            'email': forms.TextInput(attrs={'placeholder': 'Адрес эл. почты'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Адрес эл. почты', 'class': 'signin__input', 'alt': 'Адрес эл. почты', 'required': ''}),
 
-            'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Имя', 'class': 'signin__input', 'alt': 'Имя', 'required': ''}),
 
-            'last_name': forms.TextInput(attrs={'placeholder': 'Фамилия'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Фамилия', 'class': 'signin__input', 'alt': 'Фамилия', 'required': ''}),
 
         }

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 from .utils import _check_recaptcha
+from django.views.decorators.csrf import csrf_exempt
 
 # Сброс пароля
 from django.contrib.auth import views as auth_views
@@ -11,6 +12,9 @@ urlpatterns = [
 
     # Регистрация
     path('signup/', _check_recaptcha(SignUp.as_view()), name='sign_up_url'),
+
+    #Валидация имени пользователя
+    path('api/validate-username/', csrf_exempt(UsernameValidationView.as_view()), name='validate_username'),
 
     # Политика конфиденцииальности
     path('policy/', privacy_policy, name='policy_url'),

@@ -36,6 +36,10 @@ class SignUp(CreateUserMixin, View):
     redirect_url_is_authenticated = 'user_profile_url'
 
 
+class UsernameValidationView(ValidationMixin, View):
+    pass 
+
+
 def privacy_policy(request):
     """
     Политика конфиденциальности

@@ -19,6 +19,10 @@ from .models import *
 from django.utils import timezone
 from .secure_accounts_services import _add_ip_to_temporary_ban_ip_list, _check_status_temporary_ban_ip, _count_errors_for_temporary_ban_ip
 
+# Валидация
+import json
+from django.http import JsonResponse
+
 
 class LoginUserMixin:
     """
@@ -119,6 +123,7 @@ class CreateUserMixin:
 
         context = {
         'form': form,
+        'public_key': settings.RECAPTCHA_PUBLIC_KEY,
         'has_error': False
         }
 
@@ -176,6 +181,24 @@ class CreateUserMixin:
             return redirect(reverse(self.redirect_url))
 
         return render(request, self.template, context=context)
+
+
+class ValidationMixin:
+
+    data_type = None
+    errer_name = None
+    valid_name = None
+    error_message_status_400 = None
+    error_message_status_409 = None
+
+    def post(self, request):
+        data = json.loads(request.body)
+        username = data['username']
+        if not str(username).isalnum():
+            return JsonResponse({'username_error': 'Имя пользователя должно содержать только буквы'}, status=400)
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'username_error': 'Данное имя пользователя уже занято'}, status=409)
+        return JsonResponse({'username_is_valid': True})
 
 
 class ActivateUser:
