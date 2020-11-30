@@ -3,6 +3,11 @@
   --main--h1-color: #353535;
   --main--p-color: #575757;
   --body-background-color: #fff;
+  --default-cubic-bezier: .55,0,.1,1;
+
+  --default-button-background-color: transparent;
+  --default-button-hover-color: #fff;
+  --danger-button-color: #e23434;
 }
 
 *, *::after, *::before {
@@ -45,6 +50,39 @@ body {
   display: none;
 }
 
+/* РАСПОЛОЖЕНИЕ ЭЛЕМЕНТОВ ПО УМОЛЧАНИЮ */
+
+.flex_container_position {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.flex_wrapper_position {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: auto;
+  flex-direction: column;
+}
+
+.flex_list_position {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex_column_position {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* СКРОЛ */
 
 ::-webkit-scrollbar-track
@@ -65,20 +103,6 @@ body {
 }
 
 /* ЗАГОЛОВОК КОНТЕНТА */
-.content_title_container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-}
-
-.content_title_wrapper {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  height: auto;
-  flex-direction: column;
-}
 
 .content_title {
   display: flex;
@@ -105,6 +129,49 @@ body {
   border-bottom: 4px solid var(--main-color-app);
   border-radius: 4px;
 }
+
+/* ШАБЛОН КНОПКИ */
+
+.default_button {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 350;
+  font-family: 'Source Sans Pro', inherit, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  display: inline-block;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.default_button_color {
+  background: var(--default-button-background-color);
+  color: var(--main-color-app);
+  border: 1px solid var(--main-color-app);
+  transition: 0.5s cubic-bezier(var(--default-cubic-bezier));
+}
+
+.default_button_color:hover {
+  background: var(--main-color-app);
+  color: var(--default-button-hover-color);
+  transition: 0.5s cubic-bezier(var(--default-cubic-bezier));
+}
+
+.danger_button_color {
+  background: var(--default-button-background-color);
+  color: var(--danger-button-color);
+  border: 1px solid var(--danger-button-color);
+  transition: 0.5s cubic-bezier(var(--default-cubic-bezier));
+}
+
+.danger_button_color:hover {
+  background: var(--danger-button-color);
+  color: var(--default-button-hover-color);
+  transition: 0.5s cubic-bezier(var(--default-cubic-bezier));
+}
+
+/* ПОДВАЛ */
 
 .footer {
   height: 60px;

@@ -32,8 +32,8 @@
 
 
 {% block content %}
-<div class="blog_container">
-  <div class="blog_wrapper">
+<div class="flex_container_position">
+  <div class="flex_wrapper_position">
     <div class="post_detail wow zoomIn" data-wow-delay = "0.25s">
       <h1 class="post_detail_h1">{{ post.title}}</h1>
       <p class="post_detail_p">От {% firstof post.user.get_full_name or post.user.get_username %}  {{ post.date_pub }}</p>

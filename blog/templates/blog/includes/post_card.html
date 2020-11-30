@@ -1,6 +1,6 @@
-<div class="blog_container">
-  <div class="blog_wrapper">
-    <div class="blog_list">
+<div class="flex_container_position">
+  <div class="flex_wrapper_position">
+    <div class="flex_list_position">
       {% if page.object_list %}
       {% for post in page.object_list %}
       <div class="post wow zoomIn" data-wow-delay = "0.25s">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="post_read_button_container">
-          <a href="{{ post.get_absolute_url }}"><button class="post_button_template post_read_button" type="button" name="button">Читать</button></a>
+          <a href="{{ post.get_absolute_url }}"><button class="default_button default_button_color" type="button" name="button">Читать</button></a>
 
         </div>
       </div>

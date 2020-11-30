@@ -27,9 +27,9 @@ https://qmblog.ru/accounts/signin/
 
 
 {% block content %}
-        <div class="signin_container">
-          <div class="signin_wrapper">
-            <form class="signin_form" action="{% url 'sign_in_url' %}" method="post">
+        <div class="flex_container_position signin_container">
+          <div class="flex_wrapper_position">
+            <form class="flex_column_position" action="{% url 'sign_in_url' %}" method="post">
               {% csrf_token %}
               <div class="signin_title">
                 <h1>Вход</h1>
@@ -55,14 +55,14 @@ https://qmblog.ru/accounts/signin/
               </div>
 
               <!-- КНОПКА -->
-              <div class="signin_elements signin_button">
-                <button class="signin_button_template" type="submit" name="button">Вход</button>
+              <div class="signin_elements signin_button_position">
+                <button class="default_button default_button_color signin_button_size" type="submit" name="button">Вход</button>
               </div>
 
-              <div class="signin_elements signin_button margin-top">
+              <div class="signin_elements signin_button_position margin-top">
                 <a href="{% url 'sign_up_url' %}">Создать аккаунт</a>
               </div>
-              <div class="signin_elements signin_button margin-top">
+              <div class="signin_elements signin_button_position margin-top">
                 <a href="{% url 'reset_password' %}">Забыли пароль ?</a>
               </div>
               {% if request.GET.next %}

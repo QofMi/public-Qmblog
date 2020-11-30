@@ -1,28 +1,6 @@
 :root {
-  --cubic-bezier-gallery: .55,0,.1,1;
+  /* --cubic-bezier-gallery: .55,0,.1,1; */
   --gallery-view-background: rgba(0, 0, 0, 0.8);
-}
-
-.gallery_container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-}
-
-.gallery_wrapper {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  height: auto;
-  flex-direction: column;
-}
-
-.gallery_list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .gallery_image_container {
@@ -37,7 +15,7 @@
   width: 100%;
   transform: scale(1);
   border-radius: 10px;
-  transition: .2s cubic-bezier(var(--cubic-bezier-gallery));
+  transition: .2s cubic-bezier(var(--default-cubic-bezier));
 }
 
 .gallery_image_container img:hover {

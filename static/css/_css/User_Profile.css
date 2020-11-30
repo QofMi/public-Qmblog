@@ -1,18 +1,6 @@
 /* Профиль пользователя */
 .user_container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
   margin-top: 5%;
-}
-
-.user_wrapper {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  height: auto;
-  flex-direction: column;
 }
 
 .user_content {
@@ -251,7 +239,7 @@
   .user_container {
     width: 95%;
   }
-  
+
   .user_post_card {
     width: 100%;
   }
