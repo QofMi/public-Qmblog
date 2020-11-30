@@ -49,9 +49,12 @@
         {% block content %}
 
         {% endblock %}
+
         {% if is_paginated %}
-        <div class="pagination_wrapper">
-          {% include 'includes/paginator.html' %}
+        <div class="flex_container_position">
+          <div class="flex_wrapper_position paginator">
+            {% include 'includes/paginator.html' %}
+          </div>
         </div>
         {% endif %}
     </div>

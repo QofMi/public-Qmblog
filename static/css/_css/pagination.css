@@ -1,22 +1,12 @@
 /* Пагинация */
-.pagination_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 5%;
-  margin-bottom: 2%;  
-}
-
-.paginator {
-  position: relative;
-  width: 80%;
-}
 
 ul {
   position: relative;
-  background: #fff;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #fff;
   padding: 10px 20px;
 }
 
@@ -60,4 +50,26 @@ ul li:last-child {
   margin-left: 30px;
   font-weight: 700;
   font-size: 15px;
+}
+
+@media screen and (max-width: 1200px){
+
+}
+
+@media screen and (max-width: 800px){
+
+}
+
+@media screen and (max-width: 600px){
+
+}
+
+@media screen and (max-width: 450px){
+  .paginator {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+
 }
