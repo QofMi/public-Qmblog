@@ -2,7 +2,7 @@
   let dropMenuButtonClass = document.querySelector(".drop_menu_button");
   let dropMenuClass = document.querySelector(".drop_menu");
   let dropMenuLinkClass = document.querySelectorAll(".drop_menu_link");
-  let hiddenContentClass = document.querySelector(".content");
+  let fixedContentClass = document.querySelector(".App");
 
   function dropMenuActive(e) {
     e.preventDefault;
@@ -11,7 +11,7 @@
     for(i = 0; i < dropMenuLinkClass.length; i++) {
         dropMenuLinkClass[i].classList.toggle("drop_menu_link_active");
     };
-    hiddenContentClass.classList.toggle("hidden");
+    fixedContentClass.classList.toggle("fixed");
   };
   dropMenuButtonClass.addEventListener('click', dropMenuActive);
 </script>

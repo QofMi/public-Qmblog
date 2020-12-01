@@ -46,8 +46,9 @@ body {
   flex-direction: column;
 }
 
-.hidden {
-  display: none;
+.fixed {
+  position: fixed;
+  overflow: hidden;
 }
 
 /* РАСПОЛОЖЕНИЕ ЭЛЕМЕНТОВ ПО УМОЛЧАНИЮ */
