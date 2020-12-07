@@ -37,13 +37,16 @@ https://qmblog.ru/blog/about
 
 
 {% block content %}
-<div class="about_content">
-  <img src="{% static 'img/QofMi.png' %}" alt="">
-  <h1>QMBLOG</h1>
-  <h2>Привет, меня зовут Иван Шипачев.</h2>
-  <h2>Qmblog.ru - это галерея моих художественных работ,</h2>
-  <h2>а также, я явлюясь разработчиком данного web-сайта</h2>
-
+<div class="default_flex_container">
+  <div class="default_flex_wrapper">
+    <div class="default_flex_column about_content">
+      <img src="{% static 'img/QofMi.png' %}" alt="">
+      <h1>QMBLOG</h1>
+      <h2>Привет, меня зовут Иван Шипачев.</h2>
+      <h2>Qmblog.ru - это галерея моих художественных работ,</h2>
+      <h2>а также, я явлюясь разработчиком данного web-сайта</h2>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

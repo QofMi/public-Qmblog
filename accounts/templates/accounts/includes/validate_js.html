@@ -7,7 +7,7 @@
     feedBackMessage.style.display = 'none';
 
     if (usernameValue.length > 0) {
-      fetch("https://qmblog.ru/accounts/api/validate-username/", {
+      fetch("http://localhost:5000/accounts/api/validate-username/", {
         body: JSON.stringify({'username': usernameValue}),
         method: "POST",
       })

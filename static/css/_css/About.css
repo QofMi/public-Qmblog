@@ -1,10 +1,5 @@
 /* О ПРОЕКТЕ */
 .about_content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 4px;
 }

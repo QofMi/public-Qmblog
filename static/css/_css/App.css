@@ -53,14 +53,14 @@ body {
 
 /* РАСПОЛОЖЕНИЕ ЭЛЕМЕНТОВ ПО УМОЛЧАНИЮ */
 
-.flex_container_position {
+.default_flex_container {
   display: flex;
   justify-content: center;
   width: 100%;
   height: auto;
 }
 
-.flex_wrapper_position {
+.default_flex_wrapper {
   display: flex;
   justify-content: center;
   width: 80%;
@@ -68,14 +68,14 @@ body {
   flex-direction: column;
 }
 
-.flex_list_position {
+.default_flex_row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.flex_column_position {
+.default_flex_column {
   position: relative;
   width: 100%;
   display: flex;
@@ -191,6 +191,10 @@ body {
 }
 
 @media screen and (max-width: 450px){
+
+  .default_flex_wrapper {
+    width: 95%;
+  }
 
   .content_title__h1 {
     font-size: 1.5rem;

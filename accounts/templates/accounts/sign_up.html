@@ -27,9 +27,9 @@ https://qmblog.ru/accounts/signup/
 
 
 {% block content %}
-        <div class="flex_container_position signin_container">
-          <div class="flex_wrapper_position">
-            <form class="flex_column_position" action="{% url 'sign_up_url' %}" method="post">
+        <div class="default_flex_container signin_container">
+          <div class="default_flex_wrapper">
+            <form class="default_flex_column" action="{% url 'sign_up_url' %}" method="post">
               {% csrf_token %}
               <div class="signin_title">
                 <h1>Регистрация</h1>
