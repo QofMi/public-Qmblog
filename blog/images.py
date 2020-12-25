@@ -13,25 +13,13 @@ def _compressing_image(img):
     """
     Сжатиие изображения
     """
-    try:
-        ext = img.name.split(".")
-        if ext[1].lower() == 'jpg':
-            im = Image.open(img)
-            im_io = BytesIO()
-            new = im.resize((1280, 720))
-            new.save(im_io, 'JPEG', optimize=True, quality=70)
-            new_img = File(im_io, name=img.name)
-            return new_img
-        elif ext[1].lower() == 'png':
-            im = Image.open(img)
-            im.convert('P')
-            im_io = BytesIO()
-            new = im.resize((1280, 720))
-            new.save(im_io, 'PNG', optimize=True, quality=70)
-            new_img = File(im_io, name=img.name)
-            return new_img
-    except:
-        pass
+    im = Image.open(img)
+    im_io = BytesIO()
+    new = im.resize((1280, 720))
+    new = im.convert('RGB')
+    new.save(im_io, 'JPEG', optimize=True, quality=70)
+    new_img = File(im_io, name=img.name)
+    return new_img
 
 
 def upload_to(instance, filename, unique=False):
