@@ -2,7 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from .images import upload_to
+from .images import GenFilename
 from .utils import _gen_slug
 
 
@@ -12,7 +12,7 @@ class Post(models.Model):
     """
     title = models.CharField('Заголовок', max_length=150, db_index=True)
     slug = models.SlugField('Идентификатор',max_length=150, blank=True, unique=True)
-    img = models.ImageField('Изображение',upload_to=upload_to,  blank=True,)
+    img = models.ImageField('Изображение',upload_to=GenFilename('post'),  blank=True,)
     body = RichTextUploadingField('Текст', config_name='default', blank=True, null=True)
     date_pub = models.DateTimeField('Дата публикации', auto_now_add=True)
     user = models.ForeignKey( User, on_delete=models.SET_NULL, verbose_name='Пользователь', blank=True, null=True)
