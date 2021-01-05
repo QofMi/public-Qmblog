@@ -4,9 +4,10 @@ from PIL import Image
 from django.core.files import File
 
 # Импорт для генерирования имени файла
-from hashlib import md5
-from os import path as op
+import os
 from time import time
+from hashlib import md5
+from django.utils.deconstruct import deconstructible
 
 
 def _compressing_image(img):
@@ -22,21 +23,16 @@ def _compressing_image(img):
     return new_img
 
 
-def upload_to(instance, filename, unique=False):
+@deconstructible
+class GenFilename(object):
     """
-    Генерирование имени файла для изображений можели Post
+    Генерирование имени файла при его загрузке
     """
-    ext = op.splitext(filename)[1]
-    name = str(instance.pk or '') + filename + (str(time()) if unique else '')
-    filename = md5(name.encode('utf8')).hexdigest() + ext
-    return op.join('post/', filename)
+    def __init__(self, path):
+        self.path = os.path.join(path, '%s%s')
 
-
-def upload_to_gallery(instance, filename, unique=False):
-    """
-    Генерирование имени файла для изображений можели Gallery
-    """
-    ext = op.splitext(filename)[1]
-    name = str(instance.pk or '') + filename + (str(time()) if unique else '')
-    filename = md5(name.encode('utf8')).hexdigest() + ext
-    return op.join('gallery/', filename)
+    def __call__(self, instance, filename, unique=False):
+        extension = os.path.splitext(filename)[1]
+        name = str(instance.pk or '') + filename + (str(time()) if unique else '')
+        filename = md5(name.encode('utf8')).hexdigest()
+        return self.path % (filename, extension)
